@@ -90,8 +90,8 @@ Maximum price change: 0.47%
 
 **Correlation for MKRUSDT** 
 
-Key observations: 
-Strong correlations: `7d_ma` and `30d_ma` show high correlation with `close` and `open`, indicating their importance for price trends.
+Key observations:       
+`7d_ma` and `30d_ma` show high correlation with `close` and `open`, indicating their importance for price trends.
 `atr` (Average True Range) is moderately correlated with price indicators, highlighting its role in volatility analysis.
    
 Indicators like `adx` and `rsi` show weak correlations with price-related variables but can provide additional signals.
