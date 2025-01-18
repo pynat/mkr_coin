@@ -1,18 +1,22 @@
 **Overview**
 
-This project aims to explore the volatility of the MAKR.   
-MAKR (Maker) and its Connection to DAI:   
+This project aims to explore the volatility of the MAKR. What is MAKR (Maker) and what is its Connection to DAI:   
 MAKR is the native governance token of the MakerDAO ecosystem, which is responsible for the decentralized protocol behind the stablecoin DAI. MakerDAO allows users to create DAI by locking collateral in smart contracts, and MAKR holders participate in decision-making processes within the ecosystem. DAI is a popular decentralized stablecoin pegged to the US dollar, and its stability is crucial for various decentralized finance (DeFi) applications.   
 
 Why Predicting MKR Can Be Valuable:   
-Predicting the price movements of MKR is valuable because it serves as both a governance token and a key asset in the MakerDAO ecosystem. As MKR influences the health of DAI and MakerDAO's protocol, accurate predictions of its price could offer valuable insights into broader market sentiment, governance decisions, and the potential stability of DAI, benefiting DeFi participants and investors.    
+Predicting the price movements of MKR is valuable because it serves as both a governance token and a key asset in the MakerDAO ecosystem. As MKR influences the health of DAI and MakerDAO's protocol, accurate predictions of its price could offer valuable insights into broader market sentiment, governance decisions, and the potential stability of DAI, benefiting DeFi participants and investors. 
 
-The goal is to predict price change using advanced machine learning techniques, providing insights that can help market participants make informed decisions in a volatile environment.
 
-The repository contains Python scripts for fetching, processing, and saving cryptocurrency and indices, commodities and crypto related market data. It uses APIs from Binance and Kraken for crypto and Yahoo Finance for stocks to retrieve hourly data.    
-Various technical features and custom calculations are created and the Tal-Lib library is used. 
+**Features**
 
-The project includes models such as Logistic Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost.
+Crypto Data Fetcher: Retrieves OHLC data for selected cryptocurrencies and stablecoins using the Binance and Kraken API, with additional derived metrics and timezone conversion.    
+Stock Data Fetcher: Fetches hourly stock data for predefined tickers using Yahoo Finance, enriching the data with calculated metrics.  
+Feature Engeneering: Various technical features and custom calculations are created and the Tal-Lib library is used.  
+MKRUSDT Analysis: Focuses on analyzing the governance token, examining factors influencing its price growth, and using machine learning models to close (y).  
+Machine Learning Models: Implements models like Linear Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost to predict price trends.
+Flask API: A Flask-based API is included to interact with the data programmatically (optional, for deployment).
+Docker Support: A Dockerfile is provided for easy deployment in containerized environments.  
+   
 
 ```bash
 stable_coin/  
@@ -66,7 +70,7 @@ Volume:
     Mean: 17.30%  
     Max: 751.05%  
     
-DAIUSD (DAI Stablecoin):
+DAIUSD (DAI Stablecoin):    
 Number of data points: 613   
 Maximum price change: 0.47%      
   
@@ -81,8 +85,8 @@ To better understand the data distribution and identify potential outliers, a bo
 
 Key observations:       
 Distribution shows closing prices primarily clustered between 1400-1600 range. The Box plot indicates median price around 1500, with several outliers visible around 2200, suggesting occasional price spikes. The data appears to have moderate spread within the core trading range. Lower whisker extends to around 1000, indicating historical support level. The box (IQR) shows the middle 50% of price activity is relatively concentrated. The overall pattern suggests a somewhat stable trading range with occasional upside volatility.    
-  
-    
+     
+      
      
 **Timeseries for MKRUSDT and DAIUSD** 
 
@@ -101,8 +105,7 @@ Stable price action around $1.00 as expected for a stablecoin, with minimal vola
    
   
 **Distribution of Price Change for MKRUSDT** 
-     
-        
+       
 Key observations:    
 Distribution appears normal (bell-shaped) and is centered around 0, indicating balanced price movements. Most frequent changes are small (between -1 and +1). A few extreme outliers, especially on positive side are visible (up to +6). The Distribution tails extend from roughly -4 to +6. Peak frequency around 250 occurrences for smallest changes.
 
@@ -121,25 +124,11 @@ Stock Data:
 Merged Data with Features:
 [Link to merged Dataset](https://drive.google.com/file/d/1aImaDFQWnDEN1wliP5KTh2MwfqFSktEi/view?usp=sharing)
 
-
-
-**Features**
-
-Crypto Data Fetcher: Retrieves OHLC data for selected cryptocurrencies and stablecoins using the Binance API, with additional derived metrics and timezone conversion.
-Stock Data Fetcher: Fetches hourly stock data for predefined tickers using Yahoo Finance, enriching the data with calculated metrics.
-USDC/USDT Analysis: Focuses on analyzing the stablecoin USDC/USDT, examining factors influencing its price growth, and using machine learning models to predict positive growth (y).
-Machine Learning Models: Implements models like Logistic Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost to predict price trends and growth of USDC/USDT.
-Flask API: A Flask-based API is included to interact with the data programmatically (optional, for deployment).
-Docker Support: A Dockerfile is provided for easy deployment in containerized environments.
+   
 
 ### Machine Learning Models
-The project employs various machine learning models to predict the one-hour price growth of USDC/USDT. The pipeline includes:
-
-Feature Engineering: Derived metrics such as moving averages (7d, 30d), volatility, technical indicators (e.g., RSI, MACD), and others.
-
-Models:
-
-Logistic Regression (LR)    
+  
+Linear Regression (LR)    
 ![ROC Curve Logistic Regression](images/roc_curve_lr.png)   
 Feature Analysis:   
 The most impactful features based on accuracy changes:   
