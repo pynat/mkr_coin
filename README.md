@@ -89,7 +89,7 @@ Maximum price change: 0.47%
   
  
 
-**Boxplot for Closing Prices for USDC** 
+**Boxplot for Closing Prices for MKRUSDT** 
 
 To better understand the data distribution and identify potential outliers, a boxplot of the closing prices for MKRUSDT was generated:
 
