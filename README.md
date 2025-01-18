@@ -86,7 +86,20 @@ Volume:
 DAIUSD (DAI Stablecoin):    
 Number of data points: 613   
 Maximum price change: 0.47%      
-  
+
+
+**Correlation for MKRUSDT** 
+
+Key observations: 
+Strong correlations: `7d_ma` and `30d_ma` show high correlation with `close` and `open`, indicating their importance for price trends.
+`atr` (Average True Range) is moderately correlated with price indicators, highlighting its role in volatility analysis.
+   
+Indicators like `adx` and `rsi` show weak correlations with price-related variables but can provide additional signals.
+`volume` and `volume_change` exhibit moderate correlations with certain price metrics, making them valuable for demand-supply analysis.  
+`growth_future_1h` and `growth_future_24h` have weak correlations with other features, suggesting they could be challenging targets to predict directly.  
+A combination of moving averages (`7d_ma`, `30d_ma`), volatility (`atr`), and volume-based features can provide a strong basis for predicting MKR price trends.   
+
+![Correlation Matrix](images/correlation_matrix_mkr.png) 
  
 
 **Boxplot for Closing Prices for MKRUSDT** 
