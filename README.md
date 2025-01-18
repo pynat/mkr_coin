@@ -129,22 +129,15 @@ Merged Data with Features:
 ### Machine Learning Models
   
 Linear Regression (LR)    
-![ROC Curve Logistic Regression](images/roc_curve_lr.png)   
-Feature Analysis:   
-The most impactful features based on accuracy changes:   
-30d_ma (+2.13%)   
-macd_hist (+1.09%)   
-mom (+0.95%)   
-open (+1.42%)   
-Observations:    
-Certain tickers (e.g., HEI, KGC, COIN) slightly improve model accuracy, each contributing a +0.0067 difference.
-The tickers HEI (aerospace/defense), KGC (gold mining), and COIN (crypto exchange) impact model accuracy. Their relevance likely stems from macroeconomic ties to stablecoin behavior: HEI reflects economic trends, KGC aligns with safe-haven dynamics, and COIN directly links to the crypto sector.    
-  
-The model struggles to predict Class 1 (minority class), as reflected by low recall and F1-scores.
-Feature engineering shows that moving averages (30d_ma) and momentum indicators (macd_hist, mom) significantly contribute to model performance.   
+Features with a higher accuracy drop: 'ppo', 'trix', 'atr'. Various features have no influence on the accuracy and could be considered for removal.  
+    
+![Distribution of Predicted Values for Linear Regression](images/predicted_values_distribution_lr.png)   
+Analysis:   
+Most predictions are centered around 0, with a sharp peak and minimal spread. This indicates that the model is predicting a narrow range of values, which could suggest underfitting or that the target variable has a limited variance.    
+      
    
 Decision Trees (DT)   
-![Auc vs. Max Depth for Decision Tree](images/auc_vs_max_depth_dt.png)       
+![Cross-Validation MSE Heatmap for Decision Tree](images/cross_validation_mse_vs_max_depth__dt.png)       
 Validation Set Performance:   
 Accuracy: 53.0%  
 ROC-AUC: 0.530  
@@ -153,7 +146,7 @@ True Negatives: 2506, False Positives: 2167
 False Negatives: 2093, True Positives: 2298  
 F1-Score: 0.52  
 Key Observations:  
-Optimal AUC achieved through regularization with high min_samples_leaf (500) and moderate tree depth (6). Overfitting observed with low min_samples_leaf values or very deep trees. Balanced precision and recall for both classes with improved generalization.
+#### 
 
 
 
