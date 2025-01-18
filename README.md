@@ -16,6 +16,19 @@ MKRUSDT Analysis: Focuses on analyzing the governance token, examining factors i
 Machine Learning Models: Implements models like Linear Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost to predict price trends.
 Flask API: A Flask-based API is included to interact with the data programmatically (optional, for deployment).
 Docker Support: A Dockerfile is provided for easy deployment in containerized environments.  
+
+
+**Datasets**     
+Stablecoin Data:
+[Link to Cryptocurrencies Dataset](https://drive.google.com/file/d/18IzkQYiodTNiIxmnG7lGrrdb-akB0C-l/view?usp=sharing)
+
+Stock Data:
+[Link to Stocks Dataset](https://drive.google.com/file/d/1d4PRGApTcuQaCAj16dOc9k79P3M2PaYF/view?usp=sharing)
+
+Merged Data with Features:
+[Link to merged Dataset](https://drive.google.com/file/d/1aImaDFQWnDEN1wliP5KTh2MwfqFSktEi/view?usp=sharing)
+
+  
    
 
 ```bash
@@ -85,12 +98,11 @@ To better understand the data distribution and identify potential outliers, a bo
 
 Key observations:       
 Distribution shows closing prices primarily clustered between 1400-1600 range. The Box plot indicates median price around 1500, with several outliers visible around 2200, suggesting occasional price spikes. The data appears to have moderate spread within the core trading range. Lower whisker extends to around 1000, indicating historical support level. The box (IQR) shows the middle 50% of price activity is relatively concentrated. The overall pattern suggests a somewhat stable trading range with occasional upside volatility.    
-     
-      
-     
+        
+             
 **Timeseries for MKRUSDT and DAIUSD** 
 
-Analysing the Timeseries of MKRUSDT:  
+Key observations for MKRUSDT:  
 Started around $1200, with initial sideways movement until early November.
 Strong upward trend from November to early December, with a major price spike in early December reaching ~$2400. Significant volatility in December with multiple peaks above $2000 followed by a gradual downward trend since mid-December, currently showing bearish momentum, trading around $1400. Overall range: $1000-2400, with most activity between $1400-2000. Pattern suggests a completed pump and distribution phase.     
    
@@ -98,10 +110,10 @@ Strong upward trend from November to early December, with a major price spike in
 ![Timeseries](images/timeseries_mkrusdt.png)   
          
 
-Analysing the Timeseries of DAIUSD:       
+Key observations for DAIUSD:       
 Stable price action around $1.00 as expected for a stablecoin, with minimal volatility with most fluctuations staying within $0.999-1.001 range. Brief spike to $1.005 around January 9th and small spike to $1.002 on January 1st. Overall maintains excellent peg stability. Recent days (Jan 9-13) show slightly increased volatility but still within acceptable ranges.
    
-![Timeseries](images/timeseries_daiusdt.png)   
+![Timeseries](images/timeseries_daiusd.png)   
    
   
 **Distribution of Price Change for MKRUSDT** 
@@ -111,24 +123,11 @@ Distribution appears normal (bell-shaped) and is centered around 0, indicating b
 
 ![Distribution of Price Change](images/distribution_price_change.png) 
 
-
-
-
-**Datasets**     
-Stablecoin Data:
-[Link to Cryptocurrencies Dataset](https://drive.google.com/file/d/18IzkQYiodTNiIxmnG7lGrrdb-akB0C-l/view?usp=sharing)
-
-Stock Data:
-[Link to Stocks Dataset](https://drive.google.com/file/d/1d4PRGApTcuQaCAj16dOc9k79P3M2PaYF/view?usp=sharing)
-
-Merged Data with Features:
-[Link to merged Dataset](https://drive.google.com/file/d/1aImaDFQWnDEN1wliP5KTh2MwfqFSktEi/view?usp=sharing)
-
-   
+    
 
 ### Machine Learning Models
   
-Linear Regression (LR)    
+**Linear Regression (LR)**    
 Features with a higher accuracy drop: 'ppo', 'trix', 'atr'. Various features have no influence on the accuracy and could be considered for removal.  
     
 ![Distribution of Predicted Values for Linear Regression](images/predicted_values_distribution_lr.png)   
@@ -136,7 +135,7 @@ Analysis:
 Most predictions are centered around 0, with a sharp peak and minimal spread. This indicates that the model is predicting a narrow range of values, which could suggest underfitting or that the target variable has a limited variance.    
       
    
-Decision Trees (DT)   
+**Decision Trees (DT)**   
 ![Cross-Validation MSE Heatmap for Decision Tree](images/cross_validation_mse_vs_max_depth__dt.png)       
 Validation Set Performance:   
 Accuracy: 53.0%  
@@ -150,7 +149,7 @@ Key Observations:
 
 
 
-Random Forest (RF)  
+**Random Forest (RF)**   
 ![Auc vs. Number of Trees for Random Forest](images/auc_vs_num_trees_diff_max_depth_rf.png)    
 Validation Set Performance:   
 AUC: 0.56 (indicating slightly better-than-random performance).  
@@ -162,7 +161,7 @@ Moderate max_depth (10) avoids overfitting while capturing relevant patterns.
 The model achieves optimal performance by balancing flexibility (min_samples_leaf = 5) with ensemble size.   
 
 
-XGBoost     
+**XGBoost**     
 ![Feature Importance For XGBOOST](images/feature_importance_xgboost.png)    
 Evaluation:  
 Time-based features (month, day, hour) suggest the model leverages seasonal patterns. Volatility indicates the model uses market fluctuations for predictions.  
