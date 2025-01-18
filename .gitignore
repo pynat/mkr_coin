@@ -1,0 +1,43 @@
+# python cache files
+__pycache__/
+*.py[cod]
+node_modules/
+
+# virtual environment
+myenv/
+venv/
+.env
+*.env
+
+# jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# vs code settings
+.vscode/
+
+# mc files
+.DS_Store
+
+# Log files
+*.log
+logs/
+
+# files
+*.zip
+
+# Ignore all files in the db folder
+db/
+
+# machine learning/model files
+*.keras
+*.tflite
+*.h5
+*.pb
+*.onnx
+*.pth
+
+# Docker files
+docker-compose.override.yml
+*.temp
+
+aufhebenml.py
