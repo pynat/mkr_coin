@@ -6,6 +6,21 @@ MKR is the native governance token of the MakerDAO ecosystem, which is responsib
 Why Predicting MKR Can Be Valuable:   
 Predicting the price movements of MKR is valuable because it serves as both a governance token and a key asset in the MakerDAO ecosystem. As MKR influences the health of DAI and MakerDAO's protocol, accurate predictions of its price could offer valuable insights into broader market sentiment, governance decisions, and the potential stability of DAI, benefiting DeFi participants and investors. 
 
+In this project y represents the percentage change in the closing price of MKR over consecutive time periods. It is calculated as:
+```bash
+y = (close - close_lag_1) / close_lag_1
+```
+   
+close: The closing price of MKR at the current time step.   
+close_lag_1: The closing price of MKR at the previous time step.   
+Why Use Percentage Change: Because it normalizes the price movements, making the model less sensitive to the absolute price levels of MKR. This approach ensures that the model captures relative price movements, which are more relevant for understanding volatility and predicting market trends, especially in the context of a highly volatile asset like MKR.   
+y is a continuous variable representing the relative change in the price of MKR. Positive values indicate an increase in price, while negative values represent a decrease. The values are expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease).   
+Analyzing and predicting the percentage change in MKR's price helps uncover patterns in its volatility and behavior. This is particularly valuable because MKR's price dynamics have a direct impact on the stability of DAI and the MakerDAO ecosystem, which are critical for decentralized finance (DeFi) applications. By focusing on percentage changes, this project aims to provide insights that are actionable for both investors and participants in the DeFi space.
+
+
+
+
+
 
 **Features**
 
@@ -149,39 +164,24 @@ Most predictions are centered around 0, with a sharp peak and minimal spread. Th
       
    
 **Decision Trees (DT)**   
-![Cross-Validation MSE Heatmap for Decision Tree](images/cross_validation_mse_vs_max_depth__dt.png)       
-Validation Set Performance:   
-Accuracy: 53.0%  
-ROC-AUC: 0.530  
-Confusion Matrix:  
-True Negatives: 2506, False Positives: 2167  
-False Negatives: 2093, True Positives: 2298  
-F1-Score: 0.52  
-Key Observations:  
-#### 
+       
+![Cross-Validation MSE Heatmap for Decision Tree](images/cross_validation_mse_vs_max_depth__dt.png)    
 
-
-
+Key observations:  
+For min_samples_leaf, higher values (13-15) yield better results with MSE ~12.9, depth has minimal impact (MSE stable across depths) except for min_samples_leaf=1 hich shows significant deterioration at depth=4 (MSE spikes to ~34).   
+Optimal configuration found: max_depth=4, min_samples_leaf=13, achieving MSE=12.9. This suggests the model benefits from higher leaf sample restrictions to prevent overfitting.   
+   
+ 
 **Random Forest (RF)**   
 ![Auc vs. Number of Trees for Random Forest](images/auc_vs_num_trees_diff_max_depth_rf.png)    
-Validation Set Performance:   
-AUC: 0.56 (indicating slightly better-than-random performance).  
-Marginal improvements observed as n_estimators increase, with diminishing returns beyond 150 trees.  
-Key Observations:  
-Lower min_samples_leaf (1-3) values lead to overfitting and poor generalization.
-Higher min_samples_leaf (≥50) oversimplifies the model, reducing performance.
-Moderate max_depth (10) avoids overfitting while capturing relevant patterns.
-The model achieves optimal performance by balancing flexibility (min_samples_leaf = 5) with ensemble size.   
+Key observation:    
+  
 
 
 **XGBoost**     
 ![Feature Importance For XGBOOST](images/feature_importance_xgboost.png)    
-Evaluation:  
-Time-based features (month, day, hour) suggest the model leverages seasonal patterns. Volatility indicates the model uses market fluctuations for predictions.  
-Stock tickers such as DOCN (DigitalOcean), GRAB (Grab Holdings), and SMCI (Super Micro Computer) highlight a connection between traditional finance and crypto.  
-DOCN: As a cloud infrastructure company, its stock volatility or market sentiment could reflect broader financial trends influencing crypto markets.
-GRAB: A Southeast Asian tech company, its market performance may signal regional economic trends affecting investor sentiment, including in crypto.
-SMCI: Specializing in high-performance computing, its stock could correlate with tech market trends, influencing investor confidence and risk sentiment in both traditional and crypto markets.  
+Key observation:     
+    
 
 
 ### Installation
