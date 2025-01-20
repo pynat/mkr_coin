@@ -1,6 +1,6 @@
 **Overview**
 
-This project aims to explore the volatility of the MKR. What is MKR (Maker) and what is its Connection to DAI:   
+This project aims to explore the volatility of the MKR (Maker).   
 MKR is the native governance token of the MakerDAO ecosystem, which is responsible for the decentralized protocol behind the stablecoin DAI. MakerDAO allows users to create DAI by locking collateral in smart contracts, and MKR holders participate in decision-making processes within the ecosystem. DAI is a popular decentralized stablecoin pegged to the US dollar, and its stability is crucial for various decentralized finance (DeFi) applications.   
 
 Why Predicting MKR Can Be Valuable:   
