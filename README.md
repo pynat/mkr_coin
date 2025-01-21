@@ -155,6 +155,39 @@ Distribution appears normal (bell-shaped) and is centered around 0, indicating b
 
 ### Machine Learning Models
   
+  
+Target Variable Analysis: y
+Mean (y): 0.0557  
+Standard Deviation (y): 5.3460  
+![Histogram of y](y_histogram.png) 
+Description:
+The histogram illustrates the frequency distribution of the target variable y across the Train, Validation, and Test datasets. 
+The majority of values are concentrated near 0. Extreme outliers exist, with some values exceeding 5000. The distribution is highly skewed, with most values clustered in a small range and a few values significantly larger.
+Interpretation:  
+The extreme outliers can adversely affect the model by increasing error and reducing prediction accuracy.
+The skewness indicates potential difficulty for the model in correctly predicting y.  
+   
+![Boxplot of y](y_boxplot.png) 
+Description:
+The boxplot highlights the distribution of y across Train, Validation, and Test datasets, as well as the presence of outliers. The Interquartile Range (IQR) is small, suggesting that most data points are closely clustered.
+Numerous strong outliers exceed 1000.
+This aligns with the histogram: the majority of values are small, with a few extreme values.
+These outliers can significantly distort metrics like MSE and RMSE during training and validation.
+To address this, further analysis is required to decide whether to remove or transform the outliers.
+  
+*Transformation of y*   
+To address the skewness and extreme outliers, a logarithmic transformation was applied to y:
+```bash
+y_train_log = np.log1p(y_train)
+y_val_log = np.log1p(y_val)
+y_test_log = np.log1p(y_test)
+```
+![Histogram of y](y_log_histogram.png) 
+![Boxplot of y](y_log_boxplot.png) 
+
+
+
+  
 **Linear Regression (LR)**    
 Features with a higher accuracy drop: 'ppo', 'trix', 'atr'. Various features have no influence on the accuracy and could be considered for removal.  
     
