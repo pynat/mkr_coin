@@ -208,13 +208,21 @@ For min_samples_leaf, higher values (13-15) yield better results with MSE ~12.9,
 Optimal configuration found: max_depth=4, min_samples_leaf=13, achieving MSE=12.9. This suggests the model benefits from higher leaf sample restrictions to prevent overfitting.   
    
  
-**Random Forest (RF)**   
-![Auc vs. Number of Trees for Random Forest](images/auc_vs_num_trees_diff_max_depth_rf.png)    
-Key observation:    
-  
+**Random Forest (RF)**    
 
+![MSE vs Number of Trees for Different Minimum Sample Leafs Random Forest](images/mse_vs_num_trees_diff_min_samples_rf.png)    
+Key observation: 
+The best number of trees (n_estimators): 180, achieving an MSE of ~2900.731. The best max_depth: 10, striking a balance between underfitting (depth=5) and overfitting (depth=15). The best min_samples_leaf: 1, enabling the model to capture detailed patterns.
+Final model performance:   
+MSE: 2870.841, RMSE: 53.580, R² Score: 0.085.
+Despite reasonable RMSE, the low R² score (8.5%) suggests limited explanatory power.    
+      
+![Residual Plot For Random Forest](images/residuals_rf.png)
+Key observation:
+The residual plot shows the residuals (log scale) against the predicted values. Most residuals are clustered around zero, indicating that the model predictions in the log scale are fairly accurate. There are a few residuals that deviate from zero, suggesting areas where the model struggles to predict accurately. No clear pattern in the residuals suggests that the model is well-calibrated in the log scale. However, the low R² is not good.    
+     
 
-**XGBoost**     
+**XGBoost**         
 ![Feature Importance For XGBOOST](images/feature_importance_xgboost.png)    
 Key observation:     
     
