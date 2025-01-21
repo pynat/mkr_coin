@@ -11,9 +11,12 @@ In this project y represents the percentage change in the closing price of MKR o
 y = (close - close_lag_1) / close_lag_1
 ```
    
-close: The closing price of MKR at the current time step.   
-close_lag_1: The closing price of MKR at the previous time step.   
-Why Use Percentage Change: Because it normalizes the price movements, making the model less sensitive to the absolute price levels of MKR. This approach ensures that the model captures relative price movements, which are more relevant for understanding volatility and predicting market trends, especially in the context of a highly volatile asset like MKR.   
+close:   
+The closing price of MKR at the current time step.   
+close_lag_1:    
+The closing price of MKR at the previous time step.   
+Why Use Percentage Change:     
+Because it normalizes the price movements, making the model less sensitive to the absolute price levels of MKR. This approach ensures that the model captures relative price movements, which are more relevant for understanding volatility and predicting market trends, especially in the context of a highly volatile asset like MKR.   
 y is a continuous variable representing the relative change in the price of MKR. Positive values indicate an increase in price, while negative values represent a decrease. The values are expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease).   
 Analyzing and predicting the percentage change in MKR's price helps uncover patterns in its volatility and behavior. This is particularly valuable because MKR's price dynamics have a direct impact on the stability of DAI and the MakerDAO ecosystem, which are critical for decentralized finance (DeFi) applications. By focusing on percentage changes, this project aims to provide insights that are actionable for both investors and participants in the DeFi space.
 
