@@ -5,7 +5,7 @@
 
 MKR is the native governance token of the MakerDAO ecosystem, which is responsible for the decentralized protocol behind the stablecoin DAI. MakerDAO allows users to create DAI by locking collateral in smart contracts, and MKR holders participate in decision-making processes within the ecosystem. DAI is a popular decentralized stablecoin pegged to the US dollar, and its stability is crucial for various decentralized finance (DeFi) applications.   
 
-Why Predicting MKR Can Be Valuable:   
+**Why Predicting MKR Can Be Valuable:**       
 Predicting the price movements of MKR is valuable because it serves as both a governance token and a key asset in the MakerDAO ecosystem. As MKR influences the health of DAI and MakerDAO's protocol, accurate predictions of its price could offer valuable insights into broader market sentiment, governance decisions, and the potential stability of DAI, benefiting DeFi participants and investors. 
 
 In this project y represents the percentage change in the closing price of MKR over consecutive time periods. It is calculated as:
@@ -27,7 +27,7 @@ Analyzing and predicting the percentage change in MKR's price helps uncover patt
 
 
 
-**Features**
+# Features
 
 Crypto Data Fetcher: Retrieves OHLC data for selected cryptocurrencies and stablecoins using the Binance and Kraken API, with additional derived metrics and timezone conversion.    
 Stock Data Fetcher: Fetches hourly stock data for predefined tickers using Yahoo Finance, enriching the data with calculated metrics.  
@@ -38,7 +38,7 @@ Flask: Flask is included to interact with the data programmatically (optional, f
 Docker Support: A Dockerfile is provided for easy deployment in containerized environments.  
 
 
-**Datasets**     
+# Datasets  
 Stablecoin Data:
 [Link to Cryptocurrencies Dataset](https://drive.google.com/file/d/18IzkQYiodTNiIxmnG7lGrrdb-akB0C-l/view?usp=sharing)
 
@@ -158,7 +158,7 @@ Distribution appears normal (bell-shaped) and is centered around 0, indicating b
 
     
 
-### Machine Learning Models
+# Machine Learning Models
   
   
 Target Variable Analysis: y
@@ -296,7 +296,7 @@ Use predict.py to deploy the model and provide predictions via a Flask.
 ### Flask
 The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict whether the price of USDC/USDT will grow positively within the next hour.
 
-#### Steps to Use
+### Steps to Use
 1. **Start the Flask Server**  
    Ensure the conda environment is active and run:
    ```bash
