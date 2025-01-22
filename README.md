@@ -308,14 +308,14 @@ pip install -r requirements.txt
     
 
 ### Flask
-The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict whether the price of USDC/USDT will grow positively within the next hour.
+* The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict whether the price of USDC/USDT will grow positively within the next hour.
 
-### Steps to Use
+* **Steps to Use**
 1. **Start the Flask Server**  
    Ensure the conda environment is active and run:
-   ```bash
-   python predict.py
-The API will start locally at http://0.0.0.0:8000.
+   ```bash python predict.py ```
+  Server runs at http://0.0.0.0:8000    
+
 
 2. **Make Predictions**
 Send an HTTP POST request with the input features as JSON to the /predict endpoint.
@@ -338,10 +338,15 @@ Output Example:
 To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
 ## Build the Docker image:
+```bash
 docker build -t crypto-stock-analysis .
+```
+
 Run the container:
+```bash
 docker run -p 5000:5000 crypto-stock-analysis
+```
 
-
+    
 License
 This project is open-source and licensed under the MIT License.
