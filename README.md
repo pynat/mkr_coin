@@ -1,6 +1,8 @@
-**Overview**
+# Overview
 
-This project aims to explore the volatility of the MKR (Maker).   
+**This project focuses on analyzing the price volatility of MKR, the governance token of MakerDAO, and predicting its price changes using machine learning models.**
+
+
 MKR is the native governance token of the MakerDAO ecosystem, which is responsible for the decentralized protocol behind the stablecoin DAI. MakerDAO allows users to create DAI by locking collateral in smart contracts, and MKR holders participate in decision-making processes within the ecosystem. DAI is a popular decentralized stablecoin pegged to the US dollar, and its stability is crucial for various decentralized finance (DeFi) applications.   
 
 Why Predicting MKR Can Be Valuable:   
@@ -32,7 +34,7 @@ Stock Data Fetcher: Fetches hourly stock data for predefined tickers using Yahoo
 Feature Engeneering: Various technical features and custom calculations are created and the Tal-Lib library is used.  
 MKRUSDT Analysis: Focuses on analyzing the governance token, examining factors influencing its price growth, and using machine learning models to close (y).  
 Machine Learning Models: Implements models like Linear Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost to predict price trends.
-Flask API: A Flask-based API is included to interact with the data programmatically (optional, for deployment).
+Flask: Flask is included to interact with the data programmatically (optional, for deployment).
 Docker Support: A Dockerfile is provided for easy deployment in containerized environments.  
 
 
@@ -222,9 +224,40 @@ Key observation:
 The residual plot shows the residuals (log scale) against the predicted values. Most residuals are clustered around zero, indicating that the model predictions in the log scale are fairly accurate. There are a few residuals that deviate from zero, suggesting areas where the model struggles to predict accurately. No clear pattern in the residuals suggests that the model is well-calibrated in the log scale. However, the low R² is not good.    
      
 
-**XGBoost**         
+**XGBoost**      
+   
+![Scatterplot Actual vs Predicted Values XGBOOST](images/scatter_actual_vs_predicted_rf.png)    
+Key observations:
+The majority of points cluster around the diagonal line (pink dashed line), indicating that the model's predictions generally align with actual values. There's a strong linear relationship between predicted and actual values, suggesting the model captures the underlying patterns well.
+Most data points are concentrated around the 0 value on both axes. The data spans from approximately -2 to 6 on both scales. Sparse data points in higher value ranges (4-6). Some outliers visible, particularly around (-2,0) and (6,0). Slight tendency to underpredict at extreme values. The sparsity of points at higher values might indicate less reliable predictions in these ranges. Generating more training data for these extreme ranges would be valuable.   
+   
+
+
 ![Feature Importance For XGBOOST](images/feature_importance_xgboost.png)    
-Key observation:     
+Key observation:    
+Technical indicators ('trix' and 'roc', 'ppo', 'cmo', 'cci', 'bop') dominate the top features, suggesting strong predictive power
+of technical analysis for 1h predictions.  
+Time-based features (hour, day, month, year) show very low importance, suggests price movements are more technical than time-dependent.
+Most cryptocurrency tickers (BTCUSDT, ETHUSDT, etc.) have minimal impact, limited cross-crypto correlation in 1h predictions.
+Traditional market indicators (^SPX, ^VIX) show low importance, limited correlation with traditional markets.
+Focus on technical indicators proved valuable, Fibonacci levels show surprisingly low importance across all timeframes.
+   
+So I considered model simplification by focusing on top 10-15 features and looked at SHAP
+   
+![SHAP For XGBOOST](images/shap_beeswarm_plot_xgboost.png)   
+
+SHAP provides detailed insight into how individual feature values influence the predictions. Each dot represents a single data point, with its color indicating the feature value (blue = low, red = high). For "price_change," high values (red dots) positively push predictions, while low values (blue dots) negatively push them. Features like "cci" and "roc" exhibit a mix of positive and negative effects, showing non-linear relationships with the target variable. Features with narrow distributions of SHAP values, such as "day" or "ln_volume," have a limited effect on predictions across the dataset.
+
+Retraining the model with the most important features surprisingly had lower scores. So the best model for this project right now is:   
+XGBoost MSE on the Validation Set: 2.1524  
+XGBoost MAE on the Validation Set: 0.0163   
+XGBoost R² Score on the Validation Set: 0.9247   
+Best Hyperparameters:   
+eta                 0.250000   
+max_depth           5.000000   
+min_child_weight    1.000000   
+rmse                1.467122   
+
     
 
 
@@ -258,10 +291,10 @@ Train the Model:
 Use train.py to train the best-performing model (default: XGBoost) on the processed data.
 Save the trained model as a .pkl file.
 Deploy the Model with Flask:
-Use predict.py to deploy the model and provide predictions via a Flask API.
+Use predict.py to deploy the model and provide predictions via a Flask.
 
-### Flask API
-The repository includes a Flask API (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict whether the price of USDC/USDT will grow positively within the next hour.
+### Flask
+The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict whether the price of USDC/USDT will grow positively within the next hour.
 
 #### Steps to Use
 1. **Start the Flask Server**  
