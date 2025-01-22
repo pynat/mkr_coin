@@ -248,7 +248,9 @@ So I considered model simplification by focusing on top 10-15 features and looke
 
 SHAP provides detailed insight into how individual feature values influence the predictions. Each dot represents a single data point, with its color indicating the feature value (blue = low, red = high). For "price_change," high values (red dots) positively push predictions, while low values (blue dots) negatively push them. Features like "cci" and "roc" exhibit a mix of positive and negative effects, showing non-linear relationships with the target variable. Features with narrow distributions of SHAP values, such as "day" or "ln_volume," have a limited effect on predictions across the dataset.
 
-Retraining the model with the most important features surprisingly had lower scores. So the best model for this project right now is:   
+Retraining the model with the most important features surprisingly had lower scores. 
+
+**The best model for this project right now is:**   
 XGBoost MSE on the Validation Set: 2.1524  
 XGBoost MAE on the Validation Set: 0.0163   
 XGBoost R² Score on the Validation Set: 0.9247   
@@ -274,24 +276,34 @@ conda activate your-environment-name
 Using pip:
 bash
 pip install -r requirements.txt
-
+    
+        
 ### How to Use
-- Jupyter Notebook (notebook.ipynb):
-Fetch cryptocurrency and stock market data:
-Fetches data for cryptocurrencies and stablecoins defined in the coins list.
-Processes the data and adds derived metrics (e.g., price change).
-Saves the final dataset as stable_coins.csv.
-Fetches hourly stock data for predefined tickers, adds derived metrics, and formats timestamps.
-Combines all stock data into a single DataFrame and saves it as a CSV.
-Logs missing or delisted stocks/cryptos as warnings or errors.
-Perform feature engineering and derive metrics.
-Evaluate multiple machine learning models.
-Save the best models as .pkl files.
-Train the Model:
-Use train.py to train the best-performing model (default: XGBoost) on the processed data.
-Save the trained model as a .pkl file.
-Deploy the Model with Flask:
-Use predict.py to deploy the model and provide predictions via a Flask.
+
+* **Jupyter Notebook (notebook.ipynb):**
+  * Fetch cryptocurrency and stock market data:
+    * Fetches data for cryptocurrencies and stablecoins defined in the coins list.
+    * Processes the data and adds derived metrics (e.g., price change).
+    * Saves the final dataset as `stable_coins.csv`.
+  * Fetch hourly stock data for predefined tickers:
+    * Adds derived metrics.
+    * Formats timestamps.
+    * Combines all stock data into a single DataFrame and saves it as a CSV.
+    * Logs missing or delisted stocks/cryptos as warnings or errors.
+  * Perform feature engineering and derive metrics.
+  * Evaluate multiple machine learning models.
+  * Save the best models as `.pkl` files.
+
+* **Train the Model:**
+  * Use `train.py` to train the best-performing model (default: XGBoost) on the processed data.
+  * Save the trained model as a `.pkl` file.
+
+* **Deploy the Model with Flask:**
+  * Use `predict.py` to deploy the model and provide predictions via Flask.
+
+
+
+    
 
 ### Flask
 The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict whether the price of USDC/USDT will grow positively within the next hour.
