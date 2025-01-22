@@ -339,10 +339,10 @@ Output Example:
 ```
 
 
-### Run with Docker
+## Run with Docker
 To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
-## Build the Docker image:
+### Build the Docker image:
 ```bash
 docker build -t crypto-stock-analysis .
 ```
@@ -353,5 +353,5 @@ docker run -p 5000:5000 crypto-stock-analysis
 ```
 
     
-### License
+## License
 This project is open-source and licensed under the MIT License.
