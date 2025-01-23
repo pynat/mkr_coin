@@ -7,9 +7,17 @@ from math import sqrt
 # load features
 try:
     with open('features.pkl', 'rb') as file:
-        X_train, X_val, y_train_log, y_val_log = pickle.load(file)
+        X_train, X_val, y_train_log, y_val_log, feature_names = pickle.load(file)
 except FileNotFoundError:
     raise FileNotFoundError("The file 'features.pkl' was not found. Make sure it is in the correct directory.")
+
+if not feature_names or len(feature_names) != X_train.shape[1]:
+    raise ValueError("Feature names are missing or do not match the number of columns in X_train.")
+
+# now using whole dataset
+X_full = np.vstack([X_train, X_val])  
+y_full_log = np.concatenate([y_train_log, y_val_log]) 
+
 
 # best parameters 
 best_xgb_params = {
@@ -26,25 +34,10 @@ best_xgb_params = {
 
 # train final model
 model_xgb_final = xgb.XGBRegressor(**best_xgb_params)
-model_xgb_final.fit(X_train, y_train_log)
+model_xgb_final.fit(X_full, y_full_log)
 
-# predictions on validation set
-y_pred_val_log = model_xgb_final.predict(X_val)
-y_pred_val = np.expm1(y_pred_val_log)
-y_val_actual = np.expm1(y_val_log)
-
-# evaluate
-rmse = sqrt(mean_squared_error(y_val_actual, y_pred_val))
-mse = mean_squared_error(y_val_actual, y_pred_val)
-mae = mean_absolute_error(y_val_actual, y_pred_val)
-r2 = r2_score(y_val_actual, y_pred_val)
-
-# print
-print(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
-print(f"Mean Squared Error (MSE): {mse:.4f}")
-print(f"Mean Absolute Error (MAE): {mae:.4f}")
-print(f"R-squared (R2): {r2:.4f}")
-
+# assign feature names explicitly
+model_xgb_final.get_booster().feature_names = feature_names
 
 # save final model
 try:
