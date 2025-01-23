@@ -309,7 +309,7 @@ pip install -r requirements.txt
 ### Flask
 * The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict the 'close' within the next hour.
 
-* **Steps to Use**
+* **Steps to Use**       
   **Start the Flask Server**     
   Ensure the conda environment is active and run:      
 ```bash
@@ -340,7 +340,7 @@ curl -X POST http://127.0.0.1:8000/predict \
 }
 ```
 
-### Run with Docker
+## Run with Docker
 To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
 ### Build the Docker image:
