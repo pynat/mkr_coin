@@ -1,1 +1,3 @@
-{"is_positive_growth_1h_future":false,"is_positive_growth_1h_future_probability":0.0904407724738121}
+{
+  "error": "415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'."
+}

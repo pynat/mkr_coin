@@ -308,36 +308,38 @@ pip install -r requirements.txt
     
 
 ### Flask
-* The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict whether the price of USDC/USDT will grow positively within the next hour.
+* The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict the 'close' within the next hour.
 
 * **Steps to Use**
-  **Start the Flask Server**  
-  Ensure the conda environment is active and run:    
+  **Start the Flask Server**     
+  Ensure the conda environment is active and run:      
 ```bash
- python predict.py 
+    python predict.py --port=<PORT>
 ```
+  Replace <PORT> with the desired port number (e.g., 5001). If no port is specified, the server defaults to port 8000.          
+    
+  Example:     
+```bash
+    python predict.py --port=5001
+```  
+  The server runs at http://0.0.0.0:, for example: http://0.0.0.0:5001.     
 
-  Server runs at http://0.0.0.0:8000    
-
-
+     
   **Make Predictions**
-  Send an HTTP POST request with the input features as JSON to the /predict endpoint.
-```bash
-Input Example:
-{
-    "30d_ma": 102.5,
-    "7d_ma": 101.0,
-    "ticker=BTCUSDT": 1,
-    "ticker=AAPL": 0
-}
+  Send an HTTP POST request with the input features as JSON to the /predict endpoint. Replace <PORT> with the port you specified earlier.    
 
-Output Example:
+  Example Input:    
+```bash
+curl -X POST http://127.0.0.1:8000/predict \
+-H "Content-Type: application/json" \
+-d '{"close": 1128.0, "bop": -0.44444, "ppo": 1.0097517730496455}'
+```
+  Example Response:  
+```bash
 {
-    "is_positive_growth_1h_future_probability": 0.67,
-    "is_positive_growth_1h_future": true
+  "predicted_growth_rate": -0.002064734697341919
 }
 ```
-
 
 ## Run with Docker
 To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
