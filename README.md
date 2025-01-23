@@ -280,7 +280,7 @@ bash
 pip install -r requirements.txt
     
         
-### How to Use
+## How to Use
 
 * **Jupyter Notebook (notebook.ipynb):**
   * Fetch cryptocurrency and stock market data:
@@ -305,7 +305,6 @@ pip install -r requirements.txt
 
 
 
-    
 
 ### Flask
 * The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict the 'close' within the next hour.
@@ -325,7 +324,7 @@ pip install -r requirements.txt
   The server runs at http://0.0.0.0:, for example: http://0.0.0.0:5001.     
 
      
-  **Make Predictions**
+  **Make Predictions**      
   Send an HTTP POST request with the input features as JSON to the /predict endpoint. Replace <PORT> with the port you specified earlier.    
 
   Example Input:    
@@ -341,7 +340,7 @@ curl -X POST http://127.0.0.1:8000/predict \
 }
 ```
 
-## Run with Docker
+### Run with Docker
 To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
 ### Build the Docker image:

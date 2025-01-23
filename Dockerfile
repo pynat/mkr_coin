@@ -4,11 +4,11 @@ FROM continuumio/anaconda3:latest
 # set working directory in container
 WORKDIR /app
 
-# copy environment.yml file to container
-COPY environment.yml /app/environment.yml
+# copy environment.yaml file to container
+COPY environment.yaml /app/environment.yaml
 
-# install dependencies from environment.yml file
-RUN conda env create -f /app/environment.yml
+# install dependencies from environment.yaml file
+RUN conda env create -f /app/environment.yaml
 
 # set default shell to use created conda environment
 SHELL ["conda", "run", "-n", "base", "/bin/bash", "-c"]
