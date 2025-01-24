@@ -289,15 +289,16 @@ Retraining the model with the most important features surprisingly had lower sco
 
 ## The best model is:  
 ### XGBoost 
-  * **MSE on the Validation Set: 2.1524**  
-  * **MAE on the Validation Set: 0.0163**   
-  * **R² Score on the Validation Set: 0.9247**   
 **Best Hyperparameters:**  
   * **eta                 0.250000**   
   * **max_depth           5.000000**   
   * **min_child_weight    1.000000**   
-  * **rmse                1.467122**   
-
+  * **rmse                1.467122**  
+* **MSE on the Validation Set: 2.1524**  
+* **MAE on the Validation Set: 0.0163**   
+* **R² Score on the Validation Set: 0.9247**   
+ 
+ 
     
 
 
@@ -317,7 +318,57 @@ Retraining the model with the most important features surprisingly had lower sco
 ```bash
   pip install -r requirements.txt
   ```
-    
+
+## Installation Instructions for TA-Lib
+* TA-Lib library is required for this project but is not installed automatically via the environment.yaml file   
+*You need to install it manually due to potential platform-specific compilation requirements    
+
+* To install TA-Lib, follow these steps:    
+
+  * Using Conda (Recommended):   
+
+```bash
+conda install -c conda-forge ta-lib
+```
+
+* Using pip: If you prefer pip, ensure you have the required dependencies installed and run:    
+
+```bash
+pip install TA-Lib
+```
+  
+* On macOS with Homebrew: First, install the TA-Lib C library:
+
+```bash
+brew install ta-lib
+```
+  * Then install the Python wrapper:
+
+```bash
+pip install TA-Lib
+```
+
+* On Linux: Install the required development library (e.g., for Ubuntu):
+
+```bash
+sudo apt-get install libta-lib-dev
+```
+  * Then install the Python wrapper:
+
+```bash
+pip install TA-Lib
+```
+
+* On Windows: Download and install the precompiled binaries for your system from the TA-Lib website, then install the Python wrapper:
+
+```bash
+pip install TA-Lib
+```
+
+**Make sure TA-Lib is installed before running the application. If you encounter any issues, refer to the TA-Lib documentation for further assistance**
+
+
+
         
 # How to Use
 
