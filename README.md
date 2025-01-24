@@ -288,7 +288,7 @@ SHAP provides detailed insight into how individual feature values influence the 
 Retraining the model with the most important features surprisingly had lower scores. 
 
 ## The best model is:  
-**XGBoost** 
+### XGBoost 
   * **MSE on the Validation Set: 2.1524**  
   * **MAE on the Validation Set: 0.0163**   
   * **R² Score on the Validation Set: 0.9247**   
@@ -302,7 +302,7 @@ Retraining the model with the most important features surprisingly had lower sco
 
 
 # Installation
-  * Clone the repository
+  * Clone the repository:
 ```bash
   git clone https://github.com/your-repo.git
   cd your-repo
@@ -319,7 +319,7 @@ Retraining the model with the most important features surprisingly had lower sco
   ```
     
         
-## How to Use
+# How to Use
 
 * **Jupyter Notebook (notebook.ipynb):**
   * Fetch cryptocurrency and stock market data:
@@ -345,7 +345,7 @@ Retraining the model with the most important features surprisingly had lower sco
 
 
 
-### Flask
+# Flask
 * The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict the 'close' within the next hour.
 
 * **Steps to Use**       
@@ -379,7 +379,7 @@ curl -X POST http://127.0.0.1:8000/predict \
 }
 ```
 
-## Run with Docker
+# Run with Docker
 * To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
 
