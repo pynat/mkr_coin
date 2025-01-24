@@ -17,7 +17,7 @@
   * Accurate predictions provide insights into market sentiment, governance decisions, and DAI stability    
   * Beneficial for DeFi participants and investors       
            
-**Prediction Target (y):**  
+* **Prediction Target (y):**  
   * y represents the percentage change in the closing price of MKR over consecutive time periods   
   * It is calculated as:     
 ```bash
@@ -30,11 +30,11 @@ y = (close - close_lag_1) / close_lag_1
   * Positive values = price increase; negative values = price decrease   
   * Values expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease)    
         
-**Why Use Percentage Change:**     
+* **Why Use Percentage Change:**     
   * Normalizes price movements, reducing sensitivity to absolute price levels    
   * Captures relative price movements, essential for understanding volatility and predicting trends in a highly volatile asset like MKR  
           
-**Importance of Analyzing Percentage Change:**    
+* **Importance of Analyzing Percentage Change:**    
   * Reveals patterns in MKR's volatility and behavior   
   * Highlights MKR's impact on DAI stability and the MakerDAO ecosystem    
   * Provides actionable insights for DeFi participants and investors    
@@ -317,14 +317,14 @@ Surprisingly, retraining the model with the most important features resulted in 
 
 ## The best model is:  
 ### XGBoost 
-**Best Hyperparameters:**  
+* **Best Hyperparameters:**  
   * **eta                 0.250000**   
   * **max_depth           5.000000**   
   * **min_child_weight    1.000000**   
   * **rmse                1.467122**  
-* **MSE on the Validation Set: 2.1524**  
-* **MAE on the Validation Set: 0.0163**   
-* **R² Score on the Validation Set: 0.9247**   
+* * **MSE on the Validation Set: 2.1524**  
+* * **MAE on the Validation Set: 0.0163**   
+* * **R² Score on the Validation Set: 0.9247**   
  
 
 
@@ -363,23 +363,23 @@ conda install -c conda-forge ta-lib
 pip install TA-Lib
 ```
   
-* On macOS with Homebrew: First, install the TA-Lib C library:
+* * On macOS with Homebrew: First, install the TA-Lib C library:
 
 ```bash
 brew install ta-lib
 ```
-  ** Then install the Python wrapper:
+  * Then install the Python wrapper:
 
 ```bash
 pip install TA-Lib
 ```
 
-* On Linux: Install the required development library (e.g., for Ubuntu):
+* * On Linux: Install the required development library (e.g., for Ubuntu):
 
 ```bash
 sudo apt-get install libta-lib-dev
 ```
-  ** Then install the Python wrapper:
+  * Then install the Python wrapper:
 
 ```bash
 pip install TA-Lib
