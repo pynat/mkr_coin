@@ -147,34 +147,30 @@ Maximum price change: 0.47%
 
 ## Correlation for MKRUSDT
 
+![Correlation Matrix](images/correlation_matrix_mkr.png)     
 Key observations:       
-* '7d_ma' and '30d_ma': Highly correlated with 'close' and 'open', indicating their importance for identifying price trends  
-* 'atr' (Average True Range) is moderately correlated with price indicators, emphasizing its role in volatility analysis  
-* Indicators like 'adx' and 'rsi' have weak correlations with price-related variables but useful for providing additional signals  
-* 'volume' and 'volume_change' are moderately correlated with certain price metrics, making them valuable for demand-supply analysis  
-* 'growth_future_1h' and 'growth_future_24h' have weak correlations with other features, suggesting they may be challenging targets to predict directly 
+* `7d_ma` and `30d_ma`: Highly correlated with `close` and `open`, indicating their importance for identifying price trends  
+* `atr` is moderately correlated with price indicators, emphasizing its role in volatility analysis  
+* Indicators like `adx` and `rsi` have weak correlations with price-related variables but useful for providing additional signals  
+* `volume'` and `volume_change` are moderately correlated with certain price metrics, making them valuable for demand-supply analysis  
+* `growth_future_1h` and `growth_future_24h` have weak correlations with other features, suggesting they may be challenging targets to predict directly 
 * Feature Combination: Moving averages, volatility, and volume-based features form a strong foundation for predicting MKR price trends  
-
-![Correlation Matrix](images/correlation_matrix_mkr.png) 
- 
+      
 
 ## Boxplot for Closing Prices for MKRUSDT
-
-To better understand the data distribution and identify potential outliers, a boxplot of the closing prices for MKRUSDT was generated:
-
-![Boxplot](images/boxplot_mkr.png)   
-         
-
+     
 Key observations:       
 * Median price around 1500   
 * Outliers visible around 2200, indicating occasional price spikes   
 * Spread and Support Level: Moderate spread within the core trading range, lower whisker extends to ~1000, suggesting a historical support level  
 * Interquartile Range (IQR): Middle 50% of price activity is relatively concentrated   
-* Overall Pattern: Indicates a stable trading range with occasional upside volatility     
+* Overall Pattern: Indicates a stable trading range with occasional upside volatility  
+![Boxplot](images/boxplot_mkr.png)        
         
-             
+               
 ## Timeseries for MKRUSDT and DAIUSD
 
+![Timeseries](images/timeseries_mkrusdt.png) 
 Key observations for MKRUSDT:  
 * Starting Point: Began around $1200 with initial sideways movement until early November  
 * Upward Trend: Strong rally from November to early December, peaking at ~$2400 in early December  
@@ -182,23 +178,22 @@ Key observations for MKRUSDT:
 * Downward Trend: Gradual decline since mid-December, currently trading around $1400 with bearish momentum  
 * Overall Range: $1000–2400, with most activity between $1400–2000    
 * Market Pattern: Suggests a completed pump-and-distribution phase       
-   
-
-![Timeseries](images/timeseries_mkrusdt.png)   
+          
          
-
+  
+         
+![Timeseries](images/timeseries_daiusd.png)     
 Key observations for DAIUSD:       
 * Price Stability: Consistent around $1.00, typical for a stablecoin  
 * Minimal Volatility: Fluctuations mostly within the $0.999–$1.001 range  
 * Notable Spikes: Brief spike to $1.005 on January 9th, small spike to $1.002 on January 1st 
 * Peg Stability: Maintains excellent peg stability around $1.00   
-* Recent Activity (Jan 9–13): Slightly increased volatility, but remains within acceptable ranges  
-   
-![Timeseries](images/timeseries_daiusd.png)   
+* Recent Activity (Jan 9–13): Slightly increased volatility, but remains within acceptable ranges   
    
   
 ## Distribution of Price Change for MKRUSDT
        
+![Distribution of Price Change](images/distribution_price_change.png)    
 Key observations:    
 * Distribution Shape: Appears normal (bell-shaped) and centered around 0, indicating balanced price movements  
 * Most Frequent Changes: Small fluctuations, typically between -1 and +1  
@@ -206,34 +201,31 @@ Key observations:
 * Tails: Distribution tails extend from roughly -4 to +6   
 * Peak Frequency: Most frequent changes occur around 250 occurrences for the smallest price movements   
 
-![Distribution of Price Change](images/distribution_price_change.png) 
-
-    
-
 # Machine Learning Models
   
   
 ## Target Variable Analysis: y    
-Mean (y): 0.0557  
-Standard Deviation (y): 5.3460  
+Mean y: 0.0557  
+Standard Deviation y: 5.3460  
 ![Histogram of y](images/y_histogram.png) 
-Description:
-The histogram illustrates the frequency distribution of the target variable y across the Train, Validation, and Test datasets. 
-The majority of values are concentrated near 0. Extreme outliers exist, with some values exceeding 5000. The distribution is highly skewed, with most values clustered in a small range and a few values significantly larger.
-Interpretation:  
-The extreme outliers can adversely affect the model by increasing error and reducing prediction accuracy.
-The skewness indicates potential difficulty for the model in correctly predicting y.  
+Key observation:
+* Illustrates the frequency distribution of the target variable y across the Train, Validation, and Test datasets  
+* Majority of values concentrated near 0  
+* Extreme outliers present, with some values exceeding 5000 
+* Distribution is highly skewed, with most values in a small range and a few significantly larger ones  
+* Extreme outliers may adversely affect the model by increasing error and reducing prediction accuracy 
+* Skewness suggests the model might face difficulty in accurately predicting y   
    
 ![Boxplot of y](images/y_boxplot.png) 
-Key observation:
-The boxplot highlights the distribution of y across Train, Validation, and Test datasets, as well as the presence of outliers. The Interquartile Range (IQR) is small, suggesting that most data points are closely clustered.
-Numerous strong outliers exceed 1000.
-This aligns with the histogram: the majority of values are small, with a few extreme values.
-These outliers can significantly distort metrics like MSE and RMSE during training and validation.
-To address this, further analysis is required to decide whether to remove or transform the outliers.
+Key observations:
+* Interquartile Range (IQR) is small, suggesting that most data points are closely clustered   
+* Numerous strong outliers exceed 1000    
+* This aligns with the histogram: the majority of values are small, with a few extreme values   
+* These outliers can significantly distort metrics like MSE and RMSE during training and validation   
+* Next Step: further analysis to decide whether to remove or transform the outliers  
   
-*Transformation of y*   
-To address the skewness and extreme outliers, a logarithmic transformation was applied to y:
+### Transformation of y  
+* Addressing the skewness and extreme outliers, a logarithmic transformation was applied to y:
 ```bash
 y_train_log = np.log1p(y_train)
 y_val_log = np.log1p(y_val)
@@ -246,10 +238,10 @@ y_test_log = np.log1p(y_test)
 
   
 ## Linear Regression (LR)   
-Features with a higher accuracy drop: 'ppo', 'trix', 'atr'. Various features have no influence on the accuracy and could be considered for removal.  
+Features with a higher accuracy drop: `ppo`, `trix`, `atr`. Various features have no influence on the accuracy and could be considered for removal.  
     
 ![Distribution of Predicted Values for Linear Regression](images/predicted_values_distribution_lr.png)   
-Analysis:   
+Key Observations:     
 Most predictions are centered around 0, with a sharp peak and minimal spread. This indicates that the model is predicting a narrow range of values, which could suggest underfitting or that the target variable has a limited variance.    
       
    
@@ -258,49 +250,66 @@ Most predictions are centered around 0, with a sharp peak and minimal spread. Th
 ![Cross-Validation MSE Heatmap for Decision Tree](images/cross_validation_mse_vs_max_depth__dt.png)    
 
 Key observations:  
-For min_samples_leaf, higher values (13-15) yield better results with MSE ~12.9, depth has minimal impact (MSE stable across depths) except for min_samples_leaf=1 hich shows significant deterioration at depth=4 (MSE spikes to ~34).   
-Optimal configuration found: max_depth=4, min_samples_leaf=13, achieving MSE=12.9. This suggests the model benefits from higher leaf sample restrictions to prevent overfitting.   
+* Higher values for min_samples_leaf (13-15) yield better results, with MSE around 12.9
+* max_depth has minimal impact, with stable MSE across depths, except for min_samples_leaf=1, where a significant deterioration occurs at depth=4 (MSE spikes to ~34)
+* Optimal Configuration: max_depth=4, min_samples_leaf=13, achieving an MSE of 12.9
+* Interpretation: The model benefits from higher leaf sample restrictions, preventing overfitting    
    
  
 ## Random Forest (RF)   
 
 ![MSE vs Number of Trees for Different Minimum Sample Leafs Random Forest](images/mse_vs_num_trees_diff_min_samples_rf.png)    
-Key observation: 
-The best number of trees (n_estimators): 180, achieving an MSE of ~2900.731. The best max_depth: 10, striking a balance between underfitting (depth=5) and overfitting (depth=15). The best min_samples_leaf: 1, enabling the model to capture detailed patterns.
-Final model performance:   
-MSE: 2870.841, RMSE: 53.580, R² Score: 0.085.
-Despite reasonable RMSE, the low R² score (8.5%) suggests limited explanatory power.    
+Key observations: 
+* Best number of trees (n_estimators): 180, achieving an MSE of ~2900.731
+* Best max_depth: 10, balancing between underfitting (depth=5) and overfitting (depth=15)     
+* Best min_samples_leaf: 1, enabling the model to capture detailed patterns
+* Final model performance: MSE: 2870.841, RMSE: 53.580, R² Score: 0.085 
+* While RMSE is reasonable, the low R² score (8.5%) indicates the model has limited explanatory power        
       
 ![Residual Plot For Random Forest](images/residuals_rf.png)
-Key observation:
-The residual plot shows the residuals (log scale) against the predicted values. Most residuals are clustered around zero, indicating that the model predictions in the log scale are fairly accurate. There are a few residuals that deviate from zero, suggesting areas where the model struggles to predict accurately. No clear pattern in the residuals suggests that the model is well-calibrated in the log scale. However, the low R² is not good.    
+Key observations:
+* The residuals (in log scale) are mostly clustered around zero, indicating accurate model predictions in this scale   
+* A few residuals deviate from zero, suggesting areas where the model struggles with accuracy  
+* No clear pattern in the residuals, indicating that the model is well-calibrated in the log scale   
+* Despite the well-calibrated residuals in the log scale, the low R² suggests that the model’s explanatory power remains limited  
      
 
 ## XGBoost     
    
 ![Scatterplot Actual vs Predicted Values XGBOOST](images/scatter_actual_vs_predicted_rf.png)    
 Key observations:      
-The majority of points cluster around the diagonal line (pink dashed line), indicating that the model's predictions generally align with actual values. There's a strong linear relationship between predicted and actual values, suggesting the model captures the underlying patterns well.
-Most data points are concentrated around the 0 value on both axes. The data spans from approximately -2 to 6 on both scales. Sparse data points in higher value ranges (4-6). Some outliers visible, particularly around (-2,0) and (6,0). Slight tendency to underpredict at extreme values. The sparsity of points at higher values might indicate less reliable predictions in these ranges. Generating more training data for these extreme ranges would be valuable.   
-   
+* Majority of points cluster around the diagonal (pink dashed line), indicating model predictions generally align with actual values   
+* Strong linear relationship between predicted and actual values, suggesting the model captures underlying patterns well   
+* Most data points are concentrated around the 0 value on both axes   
+* Data spans from approximately -2 to 6 on both axes, with sparse points in higher value ranges (4-6)   
+* Some outliers visible, particularly around (-2, 0) and (6, 0)   
+* Slight tendency to underpredict at extreme values   
+* Sparsity at higher values: Indicates less reliable predictions in these ranges   
+* Generating more training data for extreme value ranges (4-6) could improve model reliability in these areas  
 
 
 ![Feature Importance For XGBOOST](images/feature_importance_xgboost.png)    
-Key observation:    
-Technical indicators ('trix' and 'roc', 'ppo', 'cmo', 'cci', 'bop') dominate the top features, suggesting strong predictive power
-of technical analysis for 1h predictions.  
-Time-based features (hour, day, month, year) show very low importance, suggests price movements are more technical than time-dependent.
-Most cryptocurrency tickers (BTCUSDT, ETHUSDT, etc.) have minimal impact, limited cross-crypto correlation in 1h predictions.
-Traditional market indicators (^SPX, ^VIX) show low importance, limited correlation with traditional markets.
-Focus on technical indicators proved valuable, Fibonacci levels show surprisingly low importance across all timeframes.
+Key observations:    
+* Dominant Features: Technical indicators like `trix`, `roc`, `ppo`, `cmo`, `cci`, and `bop` dominate, suggesting strong predictive power for 1-hour predictions   
+* Time-Based Features: `hour`, `day`, `month`, and `year` show very low importance, indicating that price movements are more influenced by technical factors than by time (but consider the short time-frame of 3m)   
+* Cross-Crypto Correlation: Most cryptocurrency tickers (e.g., `BTCUSDT`, `ETHUSDT`) have minimal impact, showing limited cross-crypto correlation in 1-hour predictions   
+* Traditional Market Indicators: Indicators like `^SPX` and `^VIX` show low importance, with limited correlation to traditional markets   
+* Fibonacci Levels: Surprisingly low importance across all timeframes, despite their common use in technical analysis   
+* Focusing on technical indicators is more valuable than time-based or cross-crypto features, while traditional market indicators and Fibonacci levels have limited predictive power  
    
 So I considered model simplification by focusing on top 10-15 features and looked at SHAP
    
 ![SHAP For XGBOOST](images/shap_beeswarm_plot_xgboost.png)   
 
-SHAP provides detailed insight into how individual feature values influence the predictions. Each dot represents a single data point, with its color indicating the feature value (blue = low, red = high). For "price_change," high values (red dots) positively push predictions, while low values (blue dots) negatively push them. Features like "cci" and "roc" exhibit a mix of positive and negative effects, showing non-linear relationships with the target variable. Features with narrow distributions of SHAP values, such as "day" or "ln_volume," have a limited effect on predictions across the dataset.
+Key observations:     
+* SHAP Analysis: Provides insight into how individual feature values influence predictions   
+* Each dot represents a data point, with color indicating feature value (blue = low, red = high)   
+* For "price_change", high values (red dots) positively push predictions, while low values (blue dots) negatively influence them   
+* Features like `cci` and `roc` exhibit a mix of positive and negative effects, suggesting non-linear relationships with the target variable   
+* Features with narrow SHAP value distributions, like `day` or `ln_volume`, have a limited effect on predictions across the dataset   
 
-Retraining the model with the most important features surprisingly had lower scores. 
+### Retraining Result:
+Surprisingly, retraining the model with the most important features resulted in lower scores 
 
 ## The best model is:  
 ### XGBoost 
@@ -313,8 +322,6 @@ Retraining the model with the most important features surprisingly had lower sco
 * **MAE on the Validation Set: 0.0163**   
 * **R² Score on the Validation Set: 0.9247**   
  
- 
-    
 
 
 # Installation
