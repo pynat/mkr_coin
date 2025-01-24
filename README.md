@@ -131,9 +131,9 @@ Volume:
     Min: 16.25  
     Max: 8915.15  
 
-7-Day Moving Average (7d_ma):
-    Mean: 1564.15  
-    Min: 201.77  
+7-Day Moving Average (7d_ma):      
+    Mean: 1564.15    
+    Min: 201.77    
     Max: 2374.29  
 
 7-Day Volatility:  
@@ -231,14 +231,18 @@ y_train_log = np.log1p(y_train)
 y_val_log = np.log1p(y_val)
 y_test_log = np.log1p(y_test)
 ```
-![Histogram of y](images/y_log_histogram.png) 
-![Boxplot of y](images/y_log_boxplot.png) 
+![Histogram of y](images/y_log_histogram.png)   
+![Boxplot of y](images/y_log_boxplot.png)  
 
 
 
   
 ## Linear Regression (LR)   
-Features with a higher accuracy drop: `ppo`, `trix`, `atr`. Various features have no influence on the accuracy and could be considered for removal.  
+![Accuracy Drop Linear Regression](images/feature_importance_on_accuracy_drop.png)   
+   
+* Features `ppo`, `trix`, `atr` show positive accuracy drop, meaning removing these features decreases model accuracy   
+* Features like `sma20`, `cci`, and `roc` show negative accuracy drop, meaning removing these features could improves model accuracy  
+* Various features have no influence on the accuracy and could be considered for removal   
     
 ![Distribution of Predicted Values for Linear Regression](images/predicted_values_distribution_lr.png)   
 Key Observations:     
@@ -456,16 +460,12 @@ curl -X POST http://127.0.0.1:8000/predict \
 * To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
 
-docker buildx build --platform linux/amd64 -t mkr-coin-analysis .
-
-
-
-
 * Build the Docker image:
 ```bash
 docker pull continuumio/anaconda3
 docker build -t mkr-coin-analysis .
 ```
+
 
 * Run the container:
 ```bash
