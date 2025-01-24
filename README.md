@@ -287,15 +287,16 @@ SHAP provides detailed insight into how individual feature values influence the 
 
 Retraining the model with the most important features surprisingly had lower scores. 
 
-## The best model for this project right now is:  
-**XGBoost MSE on the Validation Set: 2.1524**  
-**XGBoost MAE on the Validation Set: 0.0163**   
-**XGBoost R² Score on the Validation Set: 0.9247**   
+## The best model is:  
+**XGBoost** 
+  * **MSE on the Validation Set: 2.1524**  
+  * **MAE on the Validation Set: 0.0163**   
+  * **R² Score on the Validation Set: 0.9247**   
 **Best Hyperparameters:**  
-**eta                 0.250000**   
-**max_depth           5.000000**   
-**min_child_weight    1.000000**   
-**rmse                1.467122**   
+  * **eta                 0.250000**   
+  * **max_depth           5.000000**   
+  * **min_child_weight    1.000000**   
+  * **rmse                1.467122**   
 
     
 
@@ -379,7 +380,7 @@ curl -X POST http://127.0.0.1:8000/predict \
 ```
 
 ## Run with Docker
-To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
+* To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
 
 docker buildx build --platform linux/amd64 -t mkr-coin-analysis .
@@ -387,13 +388,13 @@ docker buildx build --platform linux/amd64 -t mkr-coin-analysis .
 
 
 
-### Build the Docker image:
+* Build the Docker image:
 ```bash
 docker pull continuumio/anaconda3
 docker build -t mkr-coin-analysis .
 ```
 
-Run the container:
+* Run the container:
 ```bash
 docker run -p 5001:5001 mkr-coin-analysis
 ```
