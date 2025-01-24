@@ -111,7 +111,7 @@ stable_coin/
 ├── Dockerfile                                  # For containerized deployment    
 ```
 
-## Data Exploration:
+# Data Exploration:
 
 MKRUSDT (Maker):  
 Number of data points: 1862   
@@ -145,7 +145,7 @@ Number of data points: 613
 Maximum price change: 0.47%      
 
 
-**Correlation for MKRUSDT** 
+## Correlation for MKRUSDT
 
 Key observations:       
 `7d_ma` and `30d_ma` show high correlation with `close` and `open`, indicating their importance for price trends.
@@ -159,7 +159,7 @@ A combination of moving averages (`7d_ma`, `30d_ma`), volatility (`atr`), and vo
 ![Correlation Matrix](images/correlation_matrix_mkr.png) 
  
 
-**Boxplot for Closing Prices for MKRUSDT** 
+## Boxplot for Closing Prices for MKRUSDT
 
 To better understand the data distribution and identify potential outliers, a boxplot of the closing prices for MKRUSDT was generated:
 
@@ -170,7 +170,7 @@ Key observations:
 Distribution shows closing prices primarily clustered between 1400-1600 range. The Box plot indicates median price around 1500, with several outliers visible around 2200, suggesting occasional price spikes. The data appears to have moderate spread within the core trading range. Lower whisker extends to around 1000, indicating historical support level. The box (IQR) shows the middle 50% of price activity is relatively concentrated. The overall pattern suggests a somewhat stable trading range with occasional upside volatility.    
         
              
-**Timeseries for MKRUSDT and DAIUSD** 
+## Timeseries for MKRUSDT and DAIUSD
 
 Key observations for MKRUSDT:  
 Started around $1200, with initial sideways movement until early November.
@@ -186,7 +186,7 @@ Stable price action around $1.00 as expected for a stablecoin, with minimal vola
 ![Timeseries](images/timeseries_daiusd.png)   
    
   
-**Distribution of Price Change for MKRUSDT** 
+## Distribution of Price Change for MKRUSDT
        
 Key observations:    
 Distribution appears normal (bell-shaped) and is centered around 0, indicating balanced price movements. Most frequent changes are small (between -1 and +1). A few extreme outliers, especially on positive side are visible (up to +6). The Distribution tails extend from roughly -4 to +6. Peak frequency around 250 occurrences for smallest changes.
@@ -210,7 +210,7 @@ The extreme outliers can adversely affect the model by increasing error and redu
 The skewness indicates potential difficulty for the model in correctly predicting y.  
    
 ![Boxplot of y](images/y_boxplot.png) 
-Description:
+Key observation:
 The boxplot highlights the distribution of y across Train, Validation, and Test datasets, as well as the presence of outliers. The Interquartile Range (IQR) is small, suggesting that most data points are closely clustered.
 Numerous strong outliers exceed 1000.
 This aligns with the histogram: the majority of values are small, with a few extreme values.
@@ -230,7 +230,7 @@ y_test_log = np.log1p(y_test)
 
 
   
-**Linear Regression (LR)**    
+## Linear Regression (LR)   
 Features with a higher accuracy drop: 'ppo', 'trix', 'atr'. Various features have no influence on the accuracy and could be considered for removal.  
     
 ![Distribution of Predicted Values for Linear Regression](images/predicted_values_distribution_lr.png)   
@@ -238,7 +238,7 @@ Analysis:
 Most predictions are centered around 0, with a sharp peak and minimal spread. This indicates that the model is predicting a narrow range of values, which could suggest underfitting or that the target variable has a limited variance.    
       
    
-**Decision Trees (DT)**   
+## Decision Trees (DT)   
        
 ![Cross-Validation MSE Heatmap for Decision Tree](images/cross_validation_mse_vs_max_depth__dt.png)    
 
@@ -247,7 +247,7 @@ For min_samples_leaf, higher values (13-15) yield better results with MSE ~12.9,
 Optimal configuration found: max_depth=4, min_samples_leaf=13, achieving MSE=12.9. This suggests the model benefits from higher leaf sample restrictions to prevent overfitting.   
    
  
-**Random Forest (RF)**    
+## Random Forest (RF)   
 
 ![MSE vs Number of Trees for Different Minimum Sample Leafs Random Forest](images/mse_vs_num_trees_diff_min_samples_rf.png)    
 Key observation: 
@@ -261,7 +261,7 @@ Key observation:
 The residual plot shows the residuals (log scale) against the predicted values. Most residuals are clustered around zero, indicating that the model predictions in the log scale are fairly accurate. There are a few residuals that deviate from zero, suggesting areas where the model struggles to predict accurately. No clear pattern in the residuals suggests that the model is well-calibrated in the log scale. However, the low R² is not good.    
      
 
-**XGBoost**      
+## XGBoost     
    
 ![Scatterplot Actual vs Predicted Values XGBOOST](images/scatter_actual_vs_predicted_rf.png)    
 Key observations:
@@ -287,32 +287,35 @@ SHAP provides detailed insight into how individual feature values influence the 
 
 Retraining the model with the most important features surprisingly had lower scores. 
 
-**The best model for this project right now is:**   
-XGBoost MSE on the Validation Set: 2.1524  
-XGBoost MAE on the Validation Set: 0.0163   
-XGBoost R² Score on the Validation Set: 0.9247   
-Best Hyperparameters:   
-eta                 0.250000   
-max_depth           5.000000   
-min_child_weight    1.000000   
-rmse                1.467122   
+## The best model for this project right now is:  
+**XGBoost MSE on the Validation Set: 2.1524**  
+**XGBoost MAE on the Validation Set: 0.0163**   
+**XGBoost R² Score on the Validation Set: 0.9247**   
+**Best Hyperparameters:**  
+**eta                 0.250000**   
+**max_depth           5.000000**   
+**min_child_weight    1.000000**   
+**rmse                1.467122**   
 
     
 
 
-### Installation
-1. Clone the repository
-bash
-git clone https://github.com/your-repo.git
-cd your-repo
-2. Set up the environment
-Using Conda:
-bash
-conda env create -f environment.yml
-conda activate your-environment-name
-Using pip:
-bash
-pip install -r requirements.txt
+# Installation
+  * Clone the repository
+```bash
+  git clone https://github.com/your-repo.git
+  cd your-repo
+  ```
+  *Set up the environment
+  Using Conda:
+```bash
+  conda env create -f environment.yml
+  conda activate your-environment-name
+  ```
+  Using pip:
+```bash
+  pip install -r requirements.txt
+  ```
     
         
 ## How to Use
