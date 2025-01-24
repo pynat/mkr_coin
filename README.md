@@ -340,7 +340,7 @@ Surprisingly, retraining the model with the most important features resulted in 
   conda env create -f environment.yml
   conda activate your-environment-name
   ```
-  Using pip:
+  * Using pip:
 ```bash
   pip install -r requirements.txt
   ```
@@ -363,7 +363,7 @@ conda install -c conda-forge ta-lib
 pip install TA-Lib
 ```
   
-* * On macOS with Homebrew: First, install the TA-Lib C library:
+  * On macOS with Homebrew: First, install the TA-Lib C library:
 
 ```bash
 brew install ta-lib
@@ -374,7 +374,7 @@ brew install ta-lib
 pip install TA-Lib
 ```
 
-* * On Linux: Install the required development library (e.g., for Ubuntu):
+* On Linux: Install the required development library (e.g., for Ubuntu):
 
 ```bash
 sudo apt-get install libta-lib-dev
@@ -425,31 +425,31 @@ pip install TA-Lib
 # Flask
 * The repository includes a Flask (`predict.py`) to interact with the trained XGBoost model. The API allows users to predict the 'close' within the next hour.
 
-* **Steps to Use**       
-  **Start the Flask Server**     
-  Ensure the conda environment is active and run:      
+* **Steps to Use:**       
+  * Start the Flask Server   
+  * Ensure the conda environment is active and run:      
 ```bash
     python predict.py --port=<PORT>
 ```
-  Replace <PORT> with the desired port number (e.g., 5001). If no port is specified, the server defaults to port 8000.          
+  * Replace <PORT> with the desired port number (e.g., 5001). If no port is specified, the server defaults to port 8000            
     
-  Example:     
+  * Example:     
 ```bash
     python predict.py --port=5001
 ```  
-  The server runs at http://0.0.0.0:, for example: http://0.0.0.0:5001.     
+  * The server runs at http://0.0.0.0:, for example: http://0.0.0.0:5001       
 
      
   **Make Predictions**      
-  Send an HTTP POST request with the input features as JSON to the /predict endpoint. Replace <PORT> with the port you specified earlier.    
+  * Send an HTTP POST request with the input features as JSON to the /predict endpoint. Replace <PORT> with the port you specified earlier      
 
-  Example Input:    
+  * Example Input:    
 ```bash
 curl -X POST http://127.0.0.1:8000/predict \
 -H "Content-Type: application/json" \
 -d '{"close": 1128.0, "bop": -0.44444, "ppo": 1.0097517730496455}'
 ```
-  Example Response:  
+  * Example Response:  
 ```bash
 {
   "predicted_growth_rate": -0.002064734697341919
