@@ -1,41 +1,76 @@
 # Overview
 
-**This project focuses on analyzing the price volatility of MKR, the governance token of MakerDAO, and predicting its price changes using machine learning models.**
-
-
-MKR is the native governance token of the MakerDAO ecosystem, which is responsible for the decentralized protocol behind the stablecoin DAI. MakerDAO allows users to create DAI by locking collateral in smart contracts, and MKR holders participate in decision-making processes within the ecosystem. DAI is a popular decentralized stablecoin pegged to the US dollar, and its stability is crucial for various decentralized finance (DeFi) applications.   
-
-**Why Predicting MKR Can Be Valuable:**       
-Predicting the price movements of MKR is valuable because it serves as both a governance token and a key asset in the MakerDAO ecosystem. As MKR influences the health of DAI and MakerDAO's protocol, accurate predictions of its price could offer valuable insights into broader market sentiment, governance decisions, and the potential stability of DAI, benefiting DeFi participants and investors. 
-
-In this project y represents the percentage change in the closing price of MKR over consecutive time periods. It is calculated as:
+* **Project Focus:**     
+  * Analyze MKR price volatility and predict its price changes using machine learning models       
+    
+* **MKR Overview:**       
+  * Native governance token of the MakerDAO ecosystem   
+  * MakerDAO supports DAI, a decentralized stablecoin pegged to the US dollar   
+  * MKR holders influence decision-making within the ecosystem   
+      
+* **DAI Importance:**     
+  * Stability is crucial for decentralized finance (DeFi) applications   
+  * DAI is created by locking collateral in MakerDAO smart contracts    
+    
+* **Value of Predicting MKR Price:**   
+  * MKR impacts the health of DAI and MakerDAO's protocol    
+  * Accurate predictions provide insights into market sentiment, governance decisions, and DAI stability    
+  * Beneficial for DeFi participants and investors       
+           
+**Prediction Target (y):**  
+  * y represents the percentage change in the closing price of MKR over consecutive time periods   
+  * It is calculated as:     
 ```bash
 y = (close - close_lag_1) / close_lag_1
 ```
    
-close:   
-The closing price of MKR at the current time step.   
-close_lag_1:    
-The closing price of MKR at the previous time step.   
-Why Use Percentage Change:     
-Because it normalizes the price movements, making the model less sensitive to the absolute price levels of MKR. This approach ensures that the model captures relative price movements, which are more relevant for understanding volatility and predicting market trends, especially in the context of a highly volatile asset like MKR.   
-y is a continuous variable representing the relative change in the price of MKR. Positive values indicate an increase in price, while negative values represent a decrease. The values are expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease).   
-Analyzing and predicting the percentage change in MKR's price helps uncover patterns in its volatility and behavior. This is particularly valuable because MKR's price dynamics have a direct impact on the stability of DAI and the MakerDAO ecosystem, which are critical for decentralized finance (DeFi) applications. By focusing on percentage changes, this project aims to provide insights that are actionable for both investors and participants in the DeFi space.
+  * close: Closing price of MKR at the current time step  
+  * close_lag_1: Closing price of MKR at the previous time step  
+  * Continuous variable representing the relative change in MKR price    
+  * Positive values = price increase; negative values = price decrease   
+  * Values expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease)    
+        
+**Why Use Percentage Change:**     
+  * Normalizes price movements, reducing sensitivity to absolute price levels    
+  * Captures relative price movements, essential for understanding volatility and predicting trends in a highly volatile asset like MKR  
+          
+**Importance of Analyzing Percentage Change:**    
+  * Reveals patterns in MKR's volatility and behavior   
+  * Highlights MKR's impact on DAI stability and the MakerDAO ecosystem    
+  * Provides actionable insights for DeFi participants and investors    
 
 
-
-
-
-
+     
 # Features
 
-Crypto Data Fetcher: Retrieves OHLC data for selected cryptocurrencies and stablecoins using the Binance and Kraken API, with additional derived metrics and timezone conversion.    
-Stock Data Fetcher: Fetches hourly stock data for predefined tickers using Yahoo Finance, enriching the data with calculated metrics.  
-Feature Engeneering: Various technical features and custom calculations are created and the Tal-Lib library is used.  
-MKRUSDT Analysis: Focuses on analyzing the governance token, examining factors influencing its price growth, and using machine learning models to close (y).  
-Machine Learning Models: Implements models like Linear Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost to predict price trends.
-Flask: Flask is included to interact with the data programmatically (optional, for deployment).
-Docker Support: A Dockerfile is provided for easy deployment in containerized environments.  
+**Crypto Data Fetcher:**    
+  * Retrieves OHLC data for selected cryptocurrencies and stablecoins using the Binance and Kraken API   
+  * Includes additional derived metrics and timezone conversion    
+
+**Stock Data Fetcher:**  
+  * Fetches hourly stock data for predefined tickers using Yahoo Finance     
+  * Enriches data with calculated metrics     
+
+**Feature Engineering:**  
+  * Creates various technical features and custom calculations     
+  * Utilizes the TA-Lib library for advanced technical analysis    
+
+**MKRUSDT Analysis:**  
+  * Focuses on the governance token MKR     
+  * Examines factors influencing its price growth     
+  * Uses machine learning models to predict the target variable (y)    
+
+**Machine Learning Models:**  
+  * Implements models such as Linear Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost    
+  * Designed to predict MKR price trends      
+
+**Flask:**  
+  * Included for programmatic interaction with the data     
+  * Optional, suitable for deployment    
+
+**Docker Support:**  
+  * A Dockerfile is provided for easy deployment in containerized environments      
+ 
 
 
 # Datasets  
@@ -51,7 +86,7 @@ Merged Data with Features:
 [Link to merged Dataset](https://drive.google.com/file/d/1aImaDFQWnDEN1wliP5KTh2MwfqFSktEi/view?usp=sharing)    
 
   
-   
+ # Structure     
 
 ```bash
 stable_coin/  
@@ -343,14 +378,21 @@ curl -X POST http://127.0.0.1:8000/predict \
 ## Run with Docker
 To simplify deployment, a Dockerfile is provided. To build and run the Docker container:
 
+
+docker buildx build --platform linux/amd64 -t mkr-coin-analysis .
+
+
+
+
 ### Build the Docker image:
 ```bash
-docker build -t crypto-stock-analysis .
+docker pull continuumio/anaconda3
+docker build -t mkr-coin-analysis .
 ```
 
 Run the container:
 ```bash
-docker run -p 5000:5000 crypto-stock-analysis
+docker run -p 5001:5001 mkr-coin-analysis
 ```
 
     

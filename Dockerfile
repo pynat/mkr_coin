@@ -1,29 +1,42 @@
-# start with official anaconda base image
-FROM continuumio/anaconda3:latest
+FROM continuumio/miniconda3
+#FROM mambaorg/micromamba:latest
 
-# set working directory in container
-WORKDIR /app
 
-# copy environment.yaml file to container
-COPY environment.yaml /app/environment.yaml
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
-# install dependencies from environment.yaml file
-RUN conda env create -f /app/environment.yaml
+# Download and install TA-Lib
+RUN wget https://sourceforge.net/projects/ta-lib/files/ta-lib/0.4.0/ta-lib-0.4.0-src.tar.gz \
+    && tar -xzf ta-lib-0.4.0-src.tar.gz \
+    && cd ta-lib \
+    && ./configure --prefix=/usr \
+    && make \
+    && make install \
+    && cd .. \
+    && rm ta-lib-0.4.0-src.tar.gz
 
-# set default shell to use created conda environment
-SHELL ["conda", "run", "-n", "base", "/bin/bash", "-c"]
+# Create conda environment
+COPY environment.yaml .
+RUN conda env create -f environment.yaml
 
-# install additional tools if necessary 
-RUN conda install -n base -c conda-forge <additional-packages>
+# Prepare pip requirements
+COPY requirements.txt .
+RUN conda run -n mkr pip install -r requirements.txt
 
-# copy application code to container
+# Set default shell to use created conda environment (corrected environment name)
+SHELL ["conda", "run", "-n", "mkr", "/bin/bash", "-c"]
+
+# Copy application code to container
 COPY . /app
 
-# copy pickle model into container
+# Copy pickle model into container
 COPY final_xgboost_model.pkl /app/final_xgboost_model.pkl
 
-# expose application port
-EXPOSE 8000
+# Expose application port
+EXPOSE 5001
 
-# Define the command to run your app (adjust to your entry point)
-CMD ["conda", "run", "-n", "base", "python", "predict.py"]
+# Define the command to run your app
+CMD ["python", "predict.py"]
