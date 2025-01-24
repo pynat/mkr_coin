@@ -198,7 +198,7 @@ Distribution appears normal (bell-shaped) and is centered around 0, indicating b
 # Machine Learning Models
   
   
-Target Variable Analysis: y
+## Target Variable Analysis: y    
 Mean (y): 0.0557  
 Standard Deviation (y): 5.3460  
 ![Histogram of y](images/y_histogram.png) 
@@ -264,7 +264,7 @@ The residual plot shows the residuals (log scale) against the predicted values. 
 ## XGBoost     
    
 ![Scatterplot Actual vs Predicted Values XGBOOST](images/scatter_actual_vs_predicted_rf.png)    
-Key observations:
+Key observations:      
 The majority of points cluster around the diagonal line (pink dashed line), indicating that the model's predictions generally align with actual values. There's a strong linear relationship between predicted and actual values, suggesting the model captures the underlying patterns well.
 Most data points are concentrated around the 0 value on both axes. The data spans from approximately -2 to 6 on both scales. Sparse data points in higher value ranges (4-6). Some outliers visible, particularly around (-2,0) and (6,0). Slight tendency to underpredict at extreme values. The sparsity of points at higher values might indicate less reliable predictions in these ranges. Generating more training data for these extreme ranges would be valuable.   
    
@@ -306,7 +306,7 @@ Retraining the model with the most important features surprisingly had lower sco
   git clone https://github.com/your-repo.git
   cd your-repo
   ```
-  *Set up the environment
+  * Set up the environment
   Using Conda:
 ```bash
   conda env create -f environment.yml
