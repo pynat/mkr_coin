@@ -148,13 +148,12 @@ Maximum price change: 0.47%
 ## Correlation for MKRUSDT
 
 Key observations:       
-`7d_ma` and `30d_ma` show high correlation with `close` and `open`, indicating their importance for price trends.
-`atr` (Average True Range) is moderately correlated with price indicators, highlighting its role in volatility analysis.
-   
-Indicators like `adx` and `rsi` show weak correlations with price-related variables but can provide additional signals.
-`volume` and `volume_change` exhibit moderate correlations with certain price metrics, making them valuable for demand-supply analysis.  
-`growth_future_1h` and `growth_future_24h` have weak correlations with other features, suggesting they could be challenging targets to predict directly.  
-A combination of moving averages (`7d_ma`, `30d_ma`), volatility (`atr`), and volume-based features can provide a strong basis for predicting MKR price trends.   
+* '7d_ma' and '30d_ma': Highly correlated with 'close' and 'open', indicating their importance for identifying price trends  
+* 'atr' (Average True Range) is moderately correlated with price indicators, emphasizing its role in volatility analysis  
+* Indicators like 'adx' and 'rsi' have weak correlations with price-related variables but useful for providing additional signals  
+* 'volume' and 'volume_change' are moderately correlated with certain price metrics, making them valuable for demand-supply analysis  
+* 'growth_future_1h' and 'growth_future_24h' have weak correlations with other features, suggesting they may be challenging targets to predict directly 
+* Feature Combination: Moving averages, volatility, and volume-based features form a strong foundation for predicting MKR price trends  
 
 ![Correlation Matrix](images/correlation_matrix_mkr.png) 
  
@@ -167,21 +166,33 @@ To better understand the data distribution and identify potential outliers, a bo
          
 
 Key observations:       
-Distribution shows closing prices primarily clustered between 1400-1600 range. The Box plot indicates median price around 1500, with several outliers visible around 2200, suggesting occasional price spikes. The data appears to have moderate spread within the core trading range. Lower whisker extends to around 1000, indicating historical support level. The box (IQR) shows the middle 50% of price activity is relatively concentrated. The overall pattern suggests a somewhat stable trading range with occasional upside volatility.    
+* Median price around 1500   
+* Outliers visible around 2200, indicating occasional price spikes   
+* Spread and Support Level: Moderate spread within the core trading range, lower whisker extends to ~1000, suggesting a historical support level  
+* Interquartile Range (IQR): Middle 50% of price activity is relatively concentrated   
+* Overall Pattern: Indicates a stable trading range with occasional upside volatility     
         
              
 ## Timeseries for MKRUSDT and DAIUSD
 
 Key observations for MKRUSDT:  
-Started around $1200, with initial sideways movement until early November.
-Strong upward trend from November to early December, with a major price spike in early December reaching ~$2400. Significant volatility in December with multiple peaks above $2000 followed by a gradual downward trend since mid-December, currently showing bearish momentum, trading around $1400. Overall range: $1000-2400, with most activity between $1400-2000. Pattern suggests a completed pump and distribution phase.     
+* Starting Point: Began around $1200 with initial sideways movement until early November  
+* Upward Trend: Strong rally from November to early December, peaking at ~$2400 in early December  
+* December Volatility: Multiple peaks above $2000, significant price fluctuations  
+* Downward Trend: Gradual decline since mid-December, currently trading around $1400 with bearish momentum  
+* Overall Range: $1000–2400, with most activity between $1400–2000    
+* Market Pattern: Suggests a completed pump-and-distribution phase       
    
 
 ![Timeseries](images/timeseries_mkrusdt.png)   
          
 
 Key observations for DAIUSD:       
-Stable price action around $1.00 as expected for a stablecoin, with minimal volatility with most fluctuations staying within $0.999-1.001 range. Brief spike to $1.005 around January 9th and small spike to $1.002 on January 1st. Overall maintains excellent peg stability. Recent days (Jan 9-13) show slightly increased volatility but still within acceptable ranges.
+* Price Stability: Consistent around $1.00, typical for a stablecoin  
+* Minimal Volatility: Fluctuations mostly within the $0.999–$1.001 range  
+* Notable Spikes: Brief spike to $1.005 on January 9th, small spike to $1.002 on January 1st 
+* Peg Stability: Maintains excellent peg stability around $1.00   
+* Recent Activity (Jan 9–13): Slightly increased volatility, but remains within acceptable ranges  
    
 ![Timeseries](images/timeseries_daiusd.png)   
    
@@ -189,7 +200,11 @@ Stable price action around $1.00 as expected for a stablecoin, with minimal vola
 ## Distribution of Price Change for MKRUSDT
        
 Key observations:    
-Distribution appears normal (bell-shaped) and is centered around 0, indicating balanced price movements. Most frequent changes are small (between -1 and +1). A few extreme outliers, especially on positive side are visible (up to +6). The Distribution tails extend from roughly -4 to +6. Peak frequency around 250 occurrences for smallest changes.
+* Distribution Shape: Appears normal (bell-shaped) and centered around 0, indicating balanced price movements  
+* Most Frequent Changes: Small fluctuations, typically between -1 and +1  
+* Outliers: A few extreme positive outliers, reaching up to +6  
+* Tails: Distribution tails extend from roughly -4 to +6   
+* Peak Frequency: Most frequent changes occur around 250 occurrences for the smallest price movements   
 
 ![Distribution of Price Change](images/distribution_price_change.png) 
 
@@ -321,9 +336,9 @@ Retraining the model with the most important features surprisingly had lower sco
 
 ## Installation Instructions for TA-Lib
 * TA-Lib library is required for this project but is not installed automatically via the environment.yaml file   
-*You need to install it manually due to potential platform-specific compilation requirements    
+* You need to install it manually due to potential platform-specific compilation requirements    
 
-* To install TA-Lib, follow these steps:    
+### To install TA-Lib, follow these steps:    
 
   * Using Conda (Recommended):   
 
@@ -342,7 +357,7 @@ pip install TA-Lib
 ```bash
 brew install ta-lib
 ```
-  * Then install the Python wrapper:
+  ** Then install the Python wrapper:
 
 ```bash
 pip install TA-Lib
@@ -353,7 +368,7 @@ pip install TA-Lib
 ```bash
 sudo apt-get install libta-lib-dev
 ```
-  * Then install the Python wrapper:
+  ** Then install the Python wrapper:
 
 ```bash
 pip install TA-Lib
