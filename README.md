@@ -1,79 +1,79 @@
 # Overview
 
-* **Project Focus:**     
-  * Analyze MKR price volatility and predict its price changes using machine learning models       
+### Project Focus:         
+* Analyze MKR price volatility and predict its price changes using machine learning models       
     
-* **MKR Overview:**       
-  * Native governance token of the MakerDAO ecosystem   
-  * MakerDAO supports DAI, a decentralized stablecoin pegged to the US dollar   
-  * MKR holders influence decision-making within the ecosystem   
+### MKR Overview:           
+* Native governance token of the MakerDAO ecosystem   
+* MakerDAO supports DAI, a decentralized stablecoin pegged to the US dollar   
+* MKR holders influence decision-making within the ecosystem   
       
-* **DAI Importance:**     
-  * Stability is crucial for decentralized finance (DeFi) applications   
-  * DAI is created by locking collateral in MakerDAO smart contracts    
+### DAI Importance:         
+* Stability is crucial for decentralized finance (DeFi) applications   
+* DAI is created by locking collateral in MakerDAO smart contracts    
     
-* **Value of Predicting MKR Price:**   
-  * MKR impacts the health of DAI and MakerDAO's protocol    
-  * Accurate predictions provide insights into market sentiment, governance decisions, and DAI stability    
-  * Beneficial for DeFi participants and investors       
+### Value of Predicting MKR Price:       
+* MKR impacts the health of DAI and MakerDAO's protocol    
+* Accurate predictions provide insights into market sentiment, governance decisions, and DAI stability    
+* Beneficial for DeFi participants and investors       
            
-* **Prediction Target (y):**  
-  * y represents the percentage change in the closing price of MKR over consecutive time periods   
-  * It is calculated as:     
+### Prediction Target (y):       
+* y represents the percentage change in the closing price of MKR over consecutive time periods   
+* It is calculated as:     
 ```bash
 y = (close - close_lag_1) / close_lag_1
 ```
    
-  * close: Closing price of MKR at the current time step  
-  * close_lag_1: Closing price of MKR at the previous time step  
-  * Continuous variable representing the relative change in MKR price    
-  * Positive values = price increase; negative values = price decrease   
-  * Values expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease)    
+* close: Closing price of MKR at the current time step  
+* close_lag_1: Closing price of MKR at the previous time step  
+* Continuous variable representing the relative change in MKR price    
+* Positive values = price increase; negative values = price decrease   
+* Values expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease)    
         
-* **Why Use Percentage Change:**     
-  * Normalizes price movements, reducing sensitivity to absolute price levels    
-  * Captures relative price movements, essential for understanding volatility and predicting trends in a highly volatile asset like MKR  
+### Why Use Percentage Change:     
+* Normalizes price movements, reducing sensitivity to absolute price levels    
+* Captures relative price movements, essential for understanding volatility and predicting trends in a highly volatile asset like MKR  
           
-* **Importance of Analyzing Percentage Change:**    
-  * Reveals patterns in MKR's volatility and behavior   
-  * Highlights MKR's impact on DAI stability and the MakerDAO ecosystem    
-  * Provides actionable insights for DeFi participants and investors    
+### Importance of Analyzing Percentage Change:     
+* Reveals patterns in MKR's volatility and behavior   
+* Highlights MKR's impact on DAI stability and the MakerDAO ecosystem    
+* Provides actionable insights for DeFi participants and investors    
 
 
      
 # Features
 
-**Crypto Data Fetcher:**    
+### Crypto Data Fetcher:     
   * Retrieves OHLC data for selected cryptocurrencies and stablecoins using the Binance and Kraken API   
   * Includes additional derived metrics and timezone conversion    
 
-**Stock Data Fetcher:**  
+### Stock Data Fetcher:    
   * Fetches hourly stock data for predefined tickers using Yahoo Finance     
   * Enriches data with calculated metrics     
 
-**Feature Engineering:**  
+### Feature Engineering:     
   * Creates various technical features and custom calculations     
   * Utilizes the TA-Lib library for advanced technical analysis    
 
-**MKRUSDT Analysis:**  
+### MKRUSDT Analysis:     
   * Focuses on the governance token MKR     
   * Examines factors influencing its price growth     
   * Uses machine learning models to predict the target variable (y)    
 
-**Machine Learning Models:**  
+### Machine Learning Models:     
   * Implements models such as Linear Regression (LR), Decision Trees (DT), Random Forest (RF), and XGBoost    
   * Designed to predict MKR price trends      
 
-**Flask:**  
+### Flask:     
   * Included for programmatic interaction with the data     
   * Optional, suitable for deployment    
 
-**Docker Support:**  
+### Docker Support:      
   * A Dockerfile is provided for easy deployment in containerized environments      
  
 
 
-# Datasets  
+# Datasets   
 Crypto Data:      
 [Link to Cryptocurrencies Binance Dataset](https://drive.google.com/file/d/1voYH8gYeAXWd2MIM7w4720hSbXBrOpdc/view?usp=sharing)    
 
@@ -246,7 +246,8 @@ y_test_log = np.log1p(y_test)
     
 ![Distribution of Predicted Values for Linear Regression](images/predicted_values_distribution_lr.png)   
 Key Observations:     
-Most predictions are centered around 0, with a sharp peak and minimal spread. This indicates that the model is predicting a narrow range of values, which could suggest underfitting or that the target variable has a limited variance.    
+* Most predictions are centered around 0, with a sharp peak and minimal spread
+* Indicates that the model is predicting a narrow range of values, which could suggest underfitting or that the target variable has a limited variance         
       
    
 ## Decision Trees (DT)   
