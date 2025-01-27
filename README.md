@@ -446,9 +446,9 @@ pip install TA-Lib
 
   * Example Input:    
 ```bash
-curl -X POST http://127.0.0.1:8000/predict \
+curl -X POST http://127.0.0.1:5001/predict \
 -H "Content-Type: application/json" \
--d '{"close": 1128.0, "bop": -0.44444, "ppo": 1.0097517730496455}'
+-d '{"ln_volume": -25.422721545090816, "bop": -0.44444, "ppo": 1.0097517730496455}'
 ```
   * Example Response:  
 ```bash
