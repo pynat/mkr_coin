@@ -21,23 +21,16 @@ MKR is the governance token of MakerDAO, meaning that its holders can vote on ke
 * Beneficial for DeFi participants and investors       
            
 ### Prediction Target (y):       
-* y represents the percentage change in the closing price of MKR over consecutive time periods   
+* y represents  the closing price of MKR over consecutive time periods   
 * It is calculated as:     
 ```bash
-y = (close - close_lag_1) / close_lag_1
+y = 'close'
 ```
-   
-* close: Closing price of MKR at the current time step  
-* close_lag_1: Closing price of MKR at the previous time step  
-* Continuous variable representing the relative change in MKR price    
-* Positive values = price increase; negative values = price decrease   
-* Values expressed as decimals (e.g., 0.05 = 5% increase, -0.03 = 3% decrease)    
-        
-### Why Use Percentage Change:     
-* Normalizes price movements, reducing sensitivity to absolute price levels    
-* Captures relative price movements, essential for understanding volatility and predicting trends in a highly volatile asset like MKR  
+    
+* Continuous variable representing the close in MKR price     
+    
           
-### Importance of Analyzing Percentage Change:     
+### Importance of Analyzing Close:     
 * Reveals patterns in MKR's volatility and behavior   
 * Highlights MKR's impact on DAI stability and the MakerDAO ecosystem    
 * Provides actionable insights for DeFi participants and investors    
