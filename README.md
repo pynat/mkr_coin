@@ -1,12 +1,15 @@
 # Overview
 
+# UNDER CONSTRUCTION 
+
+
 ### Project Focus:         
-* Analyze MKR price volatility and predict its price changes using machine learning models       
-    
+This project focuses on analyzing the price movements of MKR, the governance token of MakerDAO, using machine learning models. By identifying patterns and predicting the 1h close, I aim to provide valuable insights for investors and participants in the decentralized finance (DeFi) ecosystem.    
+
 ### MKR Overview:           
-* Native governance token of the MakerDAO ecosystem   
-* MakerDAO supports DAI, a decentralized stablecoin pegged to the US dollar   
-* MKR holders influence decision-making within the ecosystem   
+MakerDAO is a decentralized platform that enables users to generate DAI, a stablecoin pegged to the US dollar, by locking cryptocurrency as collateral. Unlike traditional financial systems, MakerDAO operates without a central authority, relying on smart contracts on the blockchain.   
+MKR is the governance token of MakerDAO, meaning that its holders can vote on key decisions, such as risk management policies and system upgrades. MKR’s price fluctuates based on market demand, governance changes, and overall crypto market trends.  
+
       
 ### DAI Importance:         
 * Stability is crucial for decentralized finance (DeFi) applications   
@@ -45,11 +48,7 @@ y = (close - close_lag_1) / close_lag_1
 
 ### Crypto Data Fetcher:     
   * Retrieves OHLC data for selected cryptocurrencies and stablecoins using the Binance and Kraken API   
-  * Includes additional derived metrics and timezone conversion    
-
-### Stock Data Fetcher:    
-  * Fetches hourly stock data for predefined tickers using Yahoo Finance     
-  * Enriches data with calculated metrics     
+  * Includes additional derived metrics and timezone conversion        
 
 ### Feature Engineering:     
   * Creates various technical features and custom calculations     
@@ -78,9 +77,6 @@ Crypto Data:
 [Link to Cryptocurrencies Binance Dataset](https://drive.google.com/file/d/1voYH8gYeAXWd2MIM7w4720hSbXBrOpdc/view?usp=sharing)    
 
 [Link to Cryptocurrencies Kraken Dataset](https://drive.google.com/file/d/1ha7QAT9VKI43hVwTo3mZA23tKC6hQ0c9/view?usp=sharing)   
-
-Stock Data:    
-[Link to Stocks Dataset](https://drive.google.com/file/d/1d4PRGApTcuQaCAj16dOc9k79P3M2PaYF/view?usp=sharing)   
 
 Merged Data with Features:     
 [Link to merged Dataset](https://drive.google.com/file/d/1aImaDFQWnDEN1wliP5KTh2MwfqFSktEi/view?usp=sharing)    
@@ -113,58 +109,49 @@ stable_coin/
 
 # Data Exploration:
 
-MKRUSDT (Maker):  
-Number of data points: 1862   
-Close Price:   
-    Mean: 1566.29  
-    Min: 1063.00  
-    Max: 2411.00  
-    Standard Deviation: 298.14  
-      
-Price Change:  
-    Mean: 0.50%  
-    Max: 6.62%  
-    Min: -4.03%  
-       
-Volume:      
-    Mean: 572.94  
-    Min: 16.25  
-    Max: 8915.15  
+Statistical Summary of MKR Price Data
 
-7-Day Moving Average (7d_ma):      
-    Mean: 1564.15    
-    Min: 201.77    
-    Max: 2374.29  
+Price Overview:   
 
-7-Day Volatility:  
-    Mean: 17.30%  
-    Max: 751.05%  
-    
-DAIUSD (DAI Stablecoin):    
-Number of data points: 613   
-Maximum price change: 0.47%      
+The average closing price of MKR is approximately $1511, with a minimum of $880 and a maximum of $2411.
+The price changes show a mean of -1.39% per day, with significant volatility ranging from -4.35% to +6.62% on any given day.    
+
+Volatility and Market Behavior:    
+
+The 7-day volatility ranges from 1.46% to 88.32%, indicating varying levels of market risk.
+Intraday range shows small movements on average (mean of 1.29%) but can occasionally rise to 11.25%.   
+   
+Technical Indicators:
+   
+RSI (Relative Strength Index), a measure of price momentum, has a mean value of 48.7, suggesting a neutral market sentiment on average.
+The ADX (Average Directional Index), which indicates trend strength, has an average of 27.9, meaning weak to moderate trends generally.
+The MACD (Moving Average Convergence Divergence) fluctuates significantly, with values ranging from -66.7 to 473.2, signaling varying levels of momentum.
+
+Growth Metrics:    
+
+The 1-hour, 4-hour, and 72-hour growth metrics show a generally stable performance, with a slight positive growth observed over longer periods (mean around 1.0).       
 
 
 ## Correlation for MKRUSDT
 
 ![Correlation Matrix](images/correlation_matrix_mkr.png)     
 Key observations:       
-* `7d_ma` and `30d_ma`: Highly correlated with `close` and `open`, indicating their importance for identifying price trends  
-* `atr` is moderately correlated with price indicators, emphasizing its role in volatility analysis  
-* Indicators like `adx` and `rsi` have weak correlations with price-related variables but useful for providing additional signals  
-* `volume'` and `volume_change` are moderately correlated with certain price metrics, making them valuable for demand-supply analysis  
-* `growth_future_1h` and `growth_future_24h` have weak correlations with other features, suggesting they may be challenging targets to predict directly 
-* Feature Combination: Moving averages, volatility, and volume-based features form a strong foundation for predicting MKR price trends  
+* Price Change Independence: `price_change` shows minimal correlation with all other features (values between -0.01 and 0.04), indicating it's relatively independent of other market indicators  
+* High Multicollinearity Group: There's extremely high correlation (≈1.0) between `close`, `open`, and `7d_ma`, suggesting redundant information that could lead to model instability  
+*#* Medium Correlation Group: `atr` shows moderate to strong correlation (0.59-0.62) with price levels (`close`, `open`, `7d_ma`, `30d_ma`), indicating its close relationship with recent price action
+* Technical Indicator Relationships: `rsi` has notable correlation with growth metrics (`growth_4h`: 0.58, `growth_72h`: 0.54), suggesting these features capture similar market momentum patterns
+* Volume Metrics: `volume_change` shows minimal correlation with other features, making it a potentially valuable independent signal  
+ 
       
 
 ## Boxplot for Closing Prices for MKRUSDT
      
 Key observations:       
-* Median price around 1500   
-* Outliers visible around 2200, indicating occasional price spikes   
-* Spread and Support Level: Moderate spread within the core trading range, lower whisker extends to ~1000, suggesting a historical support level  
-* Interquartile Range (IQR): Middle 50% of price activity is relatively concentrated   
-* Overall Pattern: Indicates a stable trading range with occasional upside volatility  
+* Interquartile range (IQR) spans from Q1 = 1288.0 to Q3 = 1668.0, representing the middle 50% of closing prices
+* Median close price appears to be around the center of the IQR, indicating a relatively symmetric distribution
+* Presence of outliers beyond the upper whisker (above ≈ 2200) suggests occasional price spikes
+* Lower whisker extends towards ≈ 900-1000, indicating a historical lower price range
+* Distribution suggests that while the majority of prices are within a stable range, significant upward price jumps have occurred, which could be relevant for volatility analysis    
 ![Boxplot](images/boxplot_mkr.png)        
         
                
@@ -172,34 +159,30 @@ Key observations:
 
 ![Timeseries](images/timeseries_mkrusdt.png) 
 Key observations for MKRUSDT:  
-* Starting Point: Began around $1200 with initial sideways movement until early November  
-* Upward Trend: Strong rally from November to early December, peaking at ~$2400 in early December  
-* December Volatility: Multiple peaks above $2000, significant price fluctuations  
-* Downward Trend: Gradual decline since mid-December, currently trading around $1400 with bearish momentum  
-* Overall Range: $1000–2400, with most activity between $1400–2000    
-* Market Pattern: Suggests a completed pump-and-distribution phase       
+* Over the last 180 days, MKRUSDT exhibited high volatility
+* Price peaked in December 2024, surpassing 2400 USDT, followed by a strong decline
+* Continuous downtrend can be observed from January 2025, stabilizing around 1000 USDT in February
+* This suggests a period of strong speculative movement, followed by a bearish correction
+     
           
          
   
          
 ![Timeseries](images/timeseries_daiusd.png)     
 Key observations for DAIUSD:       
-* Price Stability: Consistent around $1.00, typical for a stablecoin  
-* Minimal Volatility: Fluctuations mostly within the $0.999–$1.001 range  
-* Notable Spikes: Brief spike to $1.005 on January 9th, small spike to $1.002 on January 1st 
-* Peg Stability: Maintains excellent peg stability around $1.00   
-* Recent Activity (Jan 9–13): Slightly increased volatility, but remains within acceptable ranges   
+* Being a stablecoin, maintained a price close to 1.0000 USDT
+* Occasional spikes above 1.0025 USDT indicate temporary deviations from the peg
+* Increased volatility was observed in early February 2025, possibly due to liquidity shifts or market events
+* Overall, the price remained within an expected range, reinforcing its stability
    
   
 ## Distribution of Price Change for MKRUSDT
        
-![Distribution of Price Change](images/distribution_price_change.png)    
+![Distribution of Close Change](images/distribution_close.png)    
 Key observations:    
-* Distribution Shape: Appears normal (bell-shaped) and centered around 0, indicating balanced price movements  
-* Most Frequent Changes: Small fluctuations, typically between -1 and +1  
-* Outliers: A few extreme positive outliers, reaching up to +6  
-* Tails: Distribution tails extend from roughly -4 to +6   
-* Peak Frequency: Most frequent changes occur around 250 occurrences for the smallest price movements   
+* Distribution appears unimodal with a peak around 1600 USDT.
+* There is a slight right skew, indicating that higher price values occur but are less frequent.
+* The KDE (kernel density estimate) smooths the distribution and highlights key trends. 
 
 # Machine Learning Models
   
@@ -224,19 +207,7 @@ Key observations:
 * These outliers can significantly distort metrics like MSE and RMSE during training and validation   
 * Next Step: further analysis to decide whether to remove or transform the outliers  
   
-### Transformation of y  
-* Addressing the skewness and extreme outliers, a logarithmic transformation was applied to y:
-```bash
-y_train_log = np.log1p(y_train)
-y_val_log = np.log1p(y_val)
-y_test_log = np.log1p(y_test)
-```
-![Histogram of y](images/y_log_histogram.png)   
-![Boxplot of y](images/y_log_boxplot.png)  
 
-
-
-  
 ## Linear Regression (LR)   
 ![Accuracy Drop Linear Regression](images/feature_importance_on_accuracy_drop.png)   
    
