@@ -131,21 +131,21 @@ The 1-hour, 4-hour, and 72-hour growth metrics show a generally stable performan
 Key observations:       
 * Price Change Independence: `price_change` shows minimal correlation with all other features (values between -0.01 and 0.04), indicating it's relatively independent of other market indicators  
 * High Multicollinearity Group: There's extremely high correlation (≈1.0) between `close`, `open`, and `7d_ma`, suggesting redundant information that could lead to model instability  
-*#* Medium Correlation Group: `atr` shows moderate to strong correlation (0.59-0.62) with price levels (`close`, `open`, `7d_ma`, `30d_ma`), indicating its close relationship with recent price action
+* Medium Correlation Group: `atr` shows moderate to strong correlation (0.59-0.62) with price levels (`close`, `open`, `7d_ma`, `30d_ma`), indicating its close relationship with recent price action
 * Technical Indicator Relationships: `rsi` has notable correlation with growth metrics (`growth_4h`: 0.58, `growth_72h`: 0.54), suggesting these features capture similar market momentum patterns
 * Volume Metrics: `volume_change` shows minimal correlation with other features, making it a potentially valuable independent signal  
  
       
 
 ## Boxplot for Closing Prices for MKRUSDT
-     
+       
+![Boxplot](images/boxplot_mkr.png)     
 Key observations:       
 * Interquartile range (IQR) spans from Q1 = 1288.0 to Q3 = 1668.0, representing the middle 50% of closing prices
 * Median close price appears to be around the center of the IQR, indicating a relatively symmetric distribution
 * Presence of outliers beyond the upper whisker (above ≈ 2200) suggests occasional price spikes
 * Lower whisker extends towards ≈ 900-1000, indicating a historical lower price range
-* Distribution suggests that while the majority of prices are within a stable range, significant upward price jumps have occurred, which could be relevant for volatility analysis    
-![Boxplot](images/boxplot_mkr.png)        
+* Distribution suggests that while the majority of prices are within a stable range, significant upward price jumps have occurred, which could be relevant for volatility analysis       
         
                
 ## Timeseries for MKRUSDT and DAIUSD
