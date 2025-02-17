@@ -4,10 +4,12 @@
 
 
 ### Project Focus:         
-This project focuses on analyzing the price movements of MKR, the governance token of MakerDAO, using machine learning models. By identifying patterns and predicting the 1h close, I aim to provide valuable insights for investors and participants in the decentralized finance (DeFi) ecosystem.    
+This project focuses on analyzing the price movements of MKR, the governance token of MakerDAO, using machine learning models.      
+By identifying patterns and predicting the 1h close, I aim to provide valuable insights for investors and participants in the decentralized finance (DeFi) ecosystem.    
 
 ### MKR Overview:           
-MakerDAO is a decentralized platform that enables users to generate DAI, a stablecoin pegged to the US dollar, by locking cryptocurrency as collateral. Unlike traditional financial systems, MakerDAO operates without a central authority, relying on smart contracts on the blockchain.   
+MakerDAO is a decentralized platform that enables users to generate DAI, a stablecoin pegged to the US dollar, by locking cryptocurrency as collateral.      
+Unlike traditional financial systems, MakerDAO operates without a central authority, relying on smart contracts on the blockchain.   
 MKR is the governance token of MakerDAO, meaning that its holders can vote on key decisions, such as risk management policies and system upgrades. MKR’s price fluctuates based on market demand, governance changes, and overall crypto market trends.  
 
       
@@ -79,13 +81,33 @@ Merged Data with Features:
 
 ```bash
 stable_coin/  
-├── images/                                     # Contains the images that are generated through EDA     
+├── images/                                     # Contains the images that are generated     
 │   ├── boxplot_mkr.png      
 │   ├── correlation_matrix_mkr.png   
-│   ├── distribution_price_change.png            
-│   ├── timeseries_mkrusdt.png      
+│   ├── cross_validation_mse_vs_max_depth_dt.png
+│   ├── distribution_close.png
+│   ├── feature_importance_on_accuracy_drop.png 
+│   ├── feature_importance_xgboost.png 
+│   ├── heatmap_dt.png 
+│   ├── mse_heatmap_rf.png 
+│   ├── mse_vs_max_depth_dt.png 
+│   ├── mse_vs_num_trees_diff_max_depth_rf.png 
+│   ├── mse_vs_num_trees_diff_min_samples_rf.png  
+│   ├── mse_vs_num_trees_rf.png  
+│   ├── predicted_values_distribution_lr.png  
+│   ├── price_change_correlation_with_volume.png   
+│   ├── residuals_distribution_lr.png  
+│   ├── residuals_rf.png   
+│   ├── residuals_vs_predicted.png 
+│   ├── rmse_vs_max_depth_for_diff_eta.png   
+│   ├── scatter_actual_vs_predicted_rf.png 
+│   ├── shap_bar_plot_xgboost.png 
+│   ├── shap_beeswarm_plot_xgboost.png     
+│   ├── timeseries_mkrusdt.png     
+│   ├── timeseries_daiusdt.png  
 │   ├── timeseries_eur.png    
-│   ├── price_change_correlation_with_volume.png 
+│   ├── y_boxplot.png 
+│   ├── y_histogram.png 
 ├── README.md                      
 ├── notebook.ipynb/       
 │   ├── get_coins                               # Fetches and processes cryptocurrency data     
