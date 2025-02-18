@@ -121,16 +121,16 @@ stable_coin/
 
 # Statistical Summary of MKR Price Data:
 
-## Price Trends:
+### Price Trends:
 * The average closing price is $1511.79, with a high of $2411.00 and a low of $880.00
 * The 7-day and 30-day moving averages are nearly identical, suggesting a stable trend over the period  
    
-# Volatility & Price Changes:
+### Volatility & Price Changes:
 * 7-day volatility is relatively high (Mean: 12.72, Max: 88.32), indicating price fluctuations
 * Intraday price movements are small on average (1.29%), but can spike up to 11.25%
 * Price change distribution shows a slight negative bias (Mean: -0.0139), with extreme moves ranging from -4.35% to +6.61%
    
-** Market Momentum & Strength:
+### Market Momentum & Strength:
 * ADX (Average Directional Index) is 27.86, indicating moderate trend strength, but can reach as high as 82.55
 * RSI (Relative Strength Index) is 48.70 on average, suggesting neutral momentum, but it ranges from 15.72 (oversold) to 97.19 (overbought)
 
@@ -138,11 +138,11 @@ stable_coin/
 * The MACD mean is slightly positive (1.06), but its large standard deviation suggests high variability  
 * The MACD histogram shows an overall negative bias (-0.55), indicating weak momentum 
 
-## Short- & Long-Term Growth:
+### Short- & Long-Term Growth:
 * 1h and 4h growth rates hover around neutral (≈1.00), with minor fluctuations
 * 72h growth shows greater variation (0.7896 to 1.4076), indicating potential medium-term trends      
 
-
+     
 ## Correlation for MKRUSDT
 
 ![Correlation Matrix](images/correlation_matrix_mkr.png)     
