@@ -459,12 +459,12 @@ pip install TA-Lib
 ```bash
 curl -X POST http://127.0.0.1:5001/predict \
 -H "Content-Type: application/json" \
--d '{"ln_volume": -25.422721545090816, "bop": -0.44444, "ppo": 1.0097517730496455}'
+-d '{"ln_volume": 8.573291254393968, "bop": -0.75, "ppo": 1.6623794774736873}'
 ```
   * Example Response:  
 ```bash
 {
-  "predicted_growth_rate": -0.002064734697341919
+"predicted_close_price": 1098.2784423828125
 }
 ```
 
@@ -474,7 +474,6 @@ curl -X POST http://127.0.0.1:5001/predict \
 
 * Build the Docker image:
 ```bash
-docker pull continuumio/anaconda3
 docker build -t mkr-coin-analysis .
 ```
 

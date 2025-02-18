@@ -3,14 +3,17 @@ import numpy as np
 from flask import Flask, jsonify, request
 import xgboost as xgb
 
-# load the model
+# load the model and components
 try:
     with open('final_xgboost_model.pkl', 'rb') as file:
         model_xgb_final = pickle.load(file)
-except FileNotFoundError:
-    raise FileNotFoundError("The model file 'final_xgboost_model.pkl' was not found. Ensure it is in the correct directory.")
+    with open('model_components.pkl', 'rb') as file:
+        components = pickle.load(file)
+    scaler = components['scaler']
+except FileNotFoundError as e:
+    raise FileNotFoundError(f"Required model files not found: {e}")
 
-# dynamically load feature names
+# get feature names
 try:
     feature_names = model_xgb_final.get_booster().feature_names
 except AttributeError:
@@ -19,41 +22,46 @@ except AttributeError:
 # initialize Flask app
 app = Flask(__name__)
 
-# prediction function
-def predict_single(features, model):
-    # reshaping for a single prediction
-    X = np.array(features).reshape(1, -1)  
-    y_pred_log = model.predict(X)          
-    y_pred = np.expm1(y_pred_log)          
-    return y_pred[0]
+# prediction 
+def predict_single(features, model, scaler):
+    # reshape for a single prediction
+    X = np.array(features).reshape(1, -1)
+    
+    # scale the features
+    X_scaled = scaler.transform(X)
+    
+    # predict
+    predicted_close = model.predict(X_scaled)
+    
+    return predicted_close[0]
 
 # route
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Parse JSON request
+        # parse JSON request
         input_data = request.get_json()
         if not input_data:
             return jsonify({'error': 'No input data provided'}), 400
 
-        # Prepare feature vector
+        # prepare feature vector
         features = [0] * len(feature_names)
         for key, value in input_data.items():
             if key in feature_names:
                 features[feature_names.index(key)] = value
 
-        # Predict using the model
-        prediction = predict_single(features, model_xgb_final)
+        # predict using model
+        prediction = predict_single(features, model_xgb_final, scaler)
 
-        # Return result
+        # return result
         result = {
-            'predicted_growth_rate': float(prediction)
+            'predicted_close_price': float(prediction) 
         }
         return jsonify(result)
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-# Run the Flask app
+# run the Flask app
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5001, debug=True)

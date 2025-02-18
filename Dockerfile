@@ -13,6 +13,9 @@ COPY final_xgboost_model.pkl /app/final_xgboost_model.pkl
 # Copy application code to container
 COPY . /app
 
+# Set working directory
+WORKDIR /app
+
 # List the files in /app for debugging purposes
 RUN ls -l /app
 
