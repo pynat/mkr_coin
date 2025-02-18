@@ -415,25 +415,21 @@ pip install TA-Lib
 # How to Use
 
 * **Jupyter Notebook (notebook.ipynb):**
-  * Fetch cryptocurrency and stock market data:
-    * Fetches data for cryptocurrencies and stablecoins defined in the coins list.
-    * Processes the data and adds derived metrics (e.g., price change).
-    * Saves the final dataset as `stable_coins.csv`.
-  * Fetch hourly stock data for predefined tickers:
-    * Adds derived metrics.
-    * Formats timestamps.
-    * Combines all stock data into a single DataFrame and saves it as a CSV.
-    * Logs missing or delisted stocks/cryptos as warnings or errors.
-  * Perform feature engineering and derive metrics.
-  * Evaluate multiple machine learning models.
-  * Save the best models as `.pkl` files.
+  * Fetch cryptocurrency data:
+    * Fetches data for cryptocurrencies and stablecoins defined in the coins list
+    * Logs missing or delisted cryptos as warnings or errors
+    * Processes the data and adds derived metrics (e.g., price change)
+    * Saves the final dataset as `one_df.csv`
+  * Perform feature engineering and derive metrics
+  * Evaluate multiple machine learning models
+  * Save the best models as `.pkl` files
 
 * **Train the Model:**
-  * Use `train.py` to train the best-performing model (default: XGBoost) on the processed data.
-  * Save the trained model as a `.pkl` file.
+  * Use `train.py` to train the best-performing model (default: XGBoost) on the processed data
+  * Save the trained model as a `.pkl` file
 
 * **Deploy the Model with Flask:**
-  * Use `predict.py` to deploy the model and provide predictions via Flask.
+  * Use `predict.py` to deploy the model and provide predictions via Flask
 
 
 
