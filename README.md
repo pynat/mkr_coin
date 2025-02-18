@@ -1,8 +1,5 @@
 # Overview
-
-# UNDER CONSTRUCTION 
-
-
+   
 ### Project Focus:         
 This project focuses on analyzing the price movements of MKR, the governance token of MakerDAO, using machine learning models.      
 By identifying patterns and predicting the 1h close, I aim to provide valuable insights for investors and participants in the decentralized finance (DeFi) ecosystem.    
@@ -122,29 +119,28 @@ stable_coin/
 ├── Dockerfile                                  # For containerized deployment    
 ```
 
-# Data Exploration:
+# Statistical Summary of MKR Price Data:
 
-Statistical Summary of MKR Price Data
-
-Price Overview:   
-
-The average closing price of MKR is approximately $1511, with a minimum of $880 and a maximum of $2411.
-The price changes show a mean of -1.39% per day, with significant volatility ranging from -4.35% to +6.62% on any given day.    
-
-Volatility and Market Behavior:    
-
-The 7-day volatility ranges from 1.46% to 88.32%, indicating varying levels of market risk.
-Intraday range shows small movements on average (mean of 1.29%) but can occasionally rise to 11.25%.   
+## Price Trends:
+* The average closing price is $1511.79, with a high of $2411.00 and a low of $880.00
+* The 7-day and 30-day moving averages are nearly identical, suggesting a stable trend over the period  
    
-Technical Indicators:
+# Volatility & Price Changes:
+* 7-day volatility is relatively high (Mean: 12.72, Max: 88.32), indicating price fluctuations
+* Intraday price movements are small on average (1.29%), but can spike up to 11.25%
+* Price change distribution shows a slight negative bias (Mean: -0.0139), with extreme moves ranging from -4.35% to +6.61%
    
-RSI (Relative Strength Index), a measure of price momentum, has a mean value of 48.7, suggesting a neutral market sentiment on average.
-The ADX (Average Directional Index), which indicates trend strength, has an average of 27.9, meaning weak to moderate trends generally.
-The MACD (Moving Average Convergence Divergence) fluctuates significantly, with values ranging from -66.7 to 473.2, signaling varying levels of momentum.
+** Market Momentum & Strength:
+* ADX (Average Directional Index) is 27.86, indicating moderate trend strength, but can reach as high as 82.55
+* RSI (Relative Strength Index) is 48.70 on average, suggesting neutral momentum, but it ranges from 15.72 (oversold) to 97.19 (overbought)
 
-Growth Metrics:    
+### MACD Analysis:
+* The MACD mean is slightly positive (1.06), but its large standard deviation suggests high variability  
+* The MACD histogram shows an overall negative bias (-0.55), indicating weak momentum 
 
-The 1-hour, 4-hour, and 72-hour growth metrics show a generally stable performance, with a slight positive growth observed over longer periods (mean around 1.0).       
+## Short- & Long-Term Growth:
+* 1h and 4h growth rates hover around neutral (≈1.00), with minor fluctuations
+* 72h growth shows greater variation (0.7896 to 1.4076), indicating potential medium-term trends      
 
 
 ## Correlation for MKRUSDT
