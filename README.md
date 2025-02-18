@@ -110,8 +110,8 @@ stable_coin/
 │   ├── y_histogram.png 
 ├── README.md                      
 ├── notebook.ipynb/       
-│   ├── get_coins                               # Fetches and processes cryptocurrency data     
-│   ├── get_stocks                              # Fetches and processes stock data      
+│   ├── get_coins                               # Fetches and processes cryptocurrency data       
+│   ├── EDA                                     # EDA on MKRUSDT
 │   ├── feature engineering                     # Adds derived metrics for ML models      
 │   ├── model evaluation and tuning             # Compares models and saves the best as a pickle file      
 ├── train.py                                    # Trains the best model            
