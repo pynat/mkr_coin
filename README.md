@@ -175,16 +175,12 @@ Key observations for MKRUSDT:
 * Continuous downtrend can be observed from January 2025, stabilizing around 1000 USDT in February
 * This suggests a period of strong speculative movement, followed by a bearish correction
      
-          
+ ## Timeseries for EUR as Comparison        
          
   
          
-![Timeseries](images/timeseries_daiusd.png)     
-Key observations for DAIUSD:       
-* Being a stablecoin, maintained a price close to 1.0000 USDT
-* Occasional spikes above 1.0025 USDT indicate temporary deviations from the peg
-* Increased volatility was observed in early February 2025, possibly due to liquidity shifts or market events
-* Overall, the price remained within an expected range, reinforcing its stability
+![Timeseries](images/timeseries_eur.png)     
+
    
   
 ## Distribution of Close for MKRUSDT
